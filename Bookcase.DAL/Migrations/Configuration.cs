@@ -1,18 +1,16 @@
+using System.Data.Entity.Migrations;
+using Bookcase.DAL.DbContext;
+
 namespace Bookcase.DAL.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<Bookcase.DAL.DbContext.BookcaseContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<BookcaseContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Bookcase.DAL.DbContext.BookcaseContext context)
+        protected override void Seed(BookcaseContext context)
         {
             //  This method will be called after migrating to the latest version.
 

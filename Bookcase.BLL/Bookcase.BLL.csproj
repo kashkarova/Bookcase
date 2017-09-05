@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Author.cs" />
-    <Compile Include="Services\Book.cs" />
+    <Compile Include="Services\Interfaces\IAuthorService.cs" />
+    <Compile Include="Services\Interfaces\IBookService.cs" />
+    <Compile Include="Services\Realization\AuthorService.cs" />
+    <Compile Include="Services\Realization\BookService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bookcase.DAL\Bookcase.DAL.csproj">
@@ -54,7 +56,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="Services\Realization\packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,11 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Bookcase.DAL.DbEntities
 {
-    public class AuthorEntity
+    public class AuthorEntity:BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
