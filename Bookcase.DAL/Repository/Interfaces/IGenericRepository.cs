@@ -19,7 +19,7 @@ namespace Bookcase.DAL.Repository.Interfaces
 
         int Count();
         int Count(Expression<Func<TEntity, bool>> predicate);
-        
+
         void Create(TEntity item);
         void Update(TEntity item);
         void Delete(int id);

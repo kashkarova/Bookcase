@@ -10,9 +10,6 @@ namespace Bookcase.DAL.UoW.Realization
     {
         private readonly BookcaseContext _db;
 
-        public IGenericRepository<BookEntity> BookRepository { get; }
-        public IGenericRepository<AuthorEntity> AuthorRepository { get; }
-
         public UnitOfWork(BookcaseContext db)
         {
             _db = db;
@@ -20,6 +17,9 @@ namespace Bookcase.DAL.UoW.Realization
             BookRepository = new GenericRepository<BookEntity>(_db);
             AuthorRepository = new GenericRepository<AuthorEntity>(_db);
         }
+
+        public IGenericRepository<BookEntity> BookRepository { get; }
+        public IGenericRepository<AuthorEntity> AuthorRepository { get; }
 
         public void Save()
         {

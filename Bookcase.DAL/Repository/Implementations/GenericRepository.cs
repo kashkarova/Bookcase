@@ -62,7 +62,6 @@ namespace Bookcase.DAL.Repository.Implementations
         public void Create(TEntity item)
         {
             _db.Set<TEntity>().Add(item);
-            _db.SaveChanges();
         }
 
         public void Update(TEntity item)
@@ -73,7 +72,6 @@ namespace Bookcase.DAL.Repository.Implementations
                 throw new NullReferenceException();
 
             _db.Entry(item).State = EntityState.Modified;
-            _db.SaveChanges();
         }
 
         public void Delete(int id)
@@ -85,7 +83,6 @@ namespace Bookcase.DAL.Repository.Implementations
 
             _db.Set<TEntity>().Remove(itemForDelete);
         }
-
 
         public void Dispose()
         {

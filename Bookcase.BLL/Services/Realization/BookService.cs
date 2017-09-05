@@ -1,39 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using AutoMapper;
+using Bookcase.BLL.DTO;
 using Bookcase.BLL.Services.Interfaces;
 using Bookcase.DAL.DbEntities;
 using Bookcase.DAL.UoW.Interfaces;
 
 namespace Bookcase.BLL.Services.Realization
 {
-    public class BookService:IBookService
+    public class BookService : IBookService
     {
         private readonly IUnitOfWork _unitOfWork;
 
         public BookService(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;           
         }
 
-        public BookEntity Get(int id)
+        public BookDTO Get(int id)
         {
-            return _unitOfWork.BookRepository.Get(id);
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, BookDTO>());
+            return Mapper.Map<BookEntity, BookDTO>(_unitOfWork.BookRepository.Get(id));
         }
 
-        public List<BookEntity> GetAll()
+        public List<BookDTO> GetAll()
         {
-            return _unitOfWork.BookRepository.GetAll();
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, BookDTO>()); 
+            return Mapper.Map<List<BookEntity>, List<BookDTO>>(_unitOfWork.BookRepository.GetAll());
         }
 
-        public List<BookEntity> GetAll(Expression<Func<BookEntity, bool>> predicate)
+        public List<BookDTO> GetAll(Expression<Func<BookEntity, bool>> predicate)
         {
-            return _unitOfWork.BookRepository.GetAll(predicate);
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, BookDTO>());
+            return Mapper.Map<List<BookEntity>, List<BookDTO>>(_unitOfWork.BookRepository.GetAll(predicate));
         }
 
-        public BookEntity First(Expression<Func<BookEntity, bool>> predicate)
+        public BookDTO First(Expression<Func<BookEntity, bool>> predicate)
         {
-            return _unitOfWork.BookRepository.First(predicate);
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, BookDTO>());
+            return Mapper.Map<BookEntity, BookDTO>(_unitOfWork.BookRepository.First(predicate));
         }
 
         public bool Exists(int id)
@@ -59,16 +65,19 @@ namespace Bookcase.BLL.Services.Realization
         public void Create(BookEntity item)
         {
             _unitOfWork.BookRepository.Create(item);
+            _unitOfWork.Save();
         }
 
         public void Update(BookEntity item)
         {
             _unitOfWork.BookRepository.Update(item);
+            _unitOfWork.Save();
         }
 
         public void Delete(int id)
         {
             _unitOfWork.BookRepository.Delete(id);
+            _unitOfWork.Save();
         }
 
         public void AddAuthorToBook(int bookId, int authorId)

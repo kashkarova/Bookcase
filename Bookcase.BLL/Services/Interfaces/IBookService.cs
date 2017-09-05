@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Bookcase.BLL.DTO;
 using Bookcase.DAL.DbEntities;
 
 namespace Bookcase.BLL.Services.Interfaces
 {
     public interface IBookService
     {
-        BookEntity Get(int id);
-        List<BookEntity> GetAll();
-        List<BookEntity> GetAll(Expression<Func<BookEntity, bool>> predicate);
+        BookDTO Get(int id);
+        List<BookDTO> GetAll();
+        List<BookDTO> GetAll(Expression<Func<BookEntity, bool>> predicate);
 
-        BookEntity First(Expression<Func<BookEntity, bool>> predicate);
+        BookDTO First(Expression<Func<BookEntity, bool>> predicate);
 
         bool Exists(int id);
         bool Exists(Expression<Func<BookEntity, bool>> predicate);

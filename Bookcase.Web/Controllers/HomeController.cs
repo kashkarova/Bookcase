@@ -1,16 +1,27 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using AutoMapper;
+using Bookcase.BLL.DTO;
 using Bookcase.BLL.Services.Interfaces;
-
+using Bookcase.ViewModel;
 
 namespace Bookcase.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(IBookService books)
-        {
+        private readonly IBookService _bookService;
 
-            
-            return View();
+        public HomeController(IBookService bookService)
+        {
+            _bookService = bookService;
+        }
+
+        public ActionResult Index()
+        {
+            var bookDtos = _bookService.GetAll();
+            Mapper.Initialize(cfg => cfg.CreateMap<BookDTO, BookViewModel>());
+            var boo = Mapper.Map<List<BookDTO>, List<BookViewModel>>(bookDtos);
+            return View(boo);
         }
 
         public ActionResult About()

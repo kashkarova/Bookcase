@@ -49,6 +49,12 @@
     <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -166,6 +172,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Bookcase.DAL.DbContext.BookcaseContext.mdf" />
+    <Content Include="App_Data\Bookcase.DAL.DbContext.BookcaseContext_log.ldf">
+      <DependentUpon>Bookcase.DAL.DbContext.BookcaseContext.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -188,7 +198,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -204,7 +216,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -224,10 +235,6 @@
     <ProjectReference Include="..\Bookcase.BLL\Bookcase.BLL.csproj">
       <Project>{88A77260-3887-4C8B-AD8C-438BDEDA966D}</Project>
       <Name>Bookcase.BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bookcase.DAL\Bookcase.DAL.csproj">
-      <Project>{AB5EABDF-29DB-485D-BACC-B2FA8C87EE30}</Project>
-      <Name>Bookcase.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bookcase.DI\Bookcase.DI.csproj">
       <Project>{B3EF0D64-ED13-412B-A69D-F6A530D35B12}</Project>

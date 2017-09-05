@@ -1,6 +1,6 @@
-﻿using Ninject.Modules;
-using Bookcase.BLL.Services.Interfaces;
+﻿using Bookcase.BLL.Services.Interfaces;
 using Bookcase.BLL.Services.Realization;
+using Ninject.Modules;
 
 namespace Bookcase.DI.Modules
 {

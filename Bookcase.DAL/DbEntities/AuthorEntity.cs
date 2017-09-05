@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Bookcase.DAL.DbEntities
 {
-    public class AuthorEntity:BaseEntity
+    public class AuthorEntity : BaseEntity
     {
         [Required]
         [MaxLength(100)]

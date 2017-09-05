@@ -12,6 +12,8 @@ namespace Bookcase.Web.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Bookcase.DI;
+    using System.Web.Mvc;
     using Bookcase.DI.Modules;
 
     public static class NinjectWebCommon 
@@ -64,12 +66,18 @@ namespace Bookcase.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            var modules = new INinjectModule[]
+            var dalModules = new INinjectModule[]
             {
                 new DALModule()
             };
 
-            kernel.Load(modules);
-        }        
+            var serviceModules = new INinjectModule[]
+            {
+                new ServiceModule()
+            };
+
+            kernel.Load(dalModules);
+            kernel.Load(serviceModules);
+        }
     }
 }
