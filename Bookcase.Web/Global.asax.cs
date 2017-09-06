@@ -13,7 +13,6 @@ namespace Bookcase.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            AutomapperConfig.RegisterMappings();
         }
     }
 }

@@ -13,6 +13,12 @@ namespace Bookcase.DAL.DbEntities
         [Required]
         public DateTime DateOfBirth { get; set; }
 
+        [Required]
+        [MaxLength(20)]
+        public string Country { get; set; }
+
+        public string Photo { get; set; }
+
         public virtual ICollection<BookEntity> Books { get; set; }
     }
 }

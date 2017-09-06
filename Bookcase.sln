@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookcase.ViewModel", "Bookc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookcase.DI", "Bookcase.DI\Bookcase.DI.csproj", "{B3EF0D64-ED13-412B-A69D-F6A530D35B12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookcase.Web", "Bookcase.Web\Bookcase.Web.csproj", "{911EEC02-0D80-4A5F-B355-7E8165367A6A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookcase.Web", "Bookcase.Web\Bookcase.Web.csproj", "{62357A1A-FD21-4B4B-AE66-C5F8E54976BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{B3EF0D64-ED13-412B-A69D-F6A530D35B12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3EF0D64-ED13-412B-A69D-F6A530D35B12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3EF0D64-ED13-412B-A69D-F6A530D35B12}.Release|Any CPU.Build.0 = Release|Any CPU
-		{911EEC02-0D80-4A5F-B355-7E8165367A6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{911EEC02-0D80-4A5F-B355-7E8165367A6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{911EEC02-0D80-4A5F-B355-7E8165367A6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{911EEC02-0D80-4A5F-B355-7E8165367A6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62357A1A-FD21-4B4B-AE66-C5F8E54976BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62357A1A-FD21-4B4B-AE66-C5F8E54976BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62357A1A-FD21-4B4B-AE66-C5F8E54976BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62357A1A-FD21-4B4B-AE66-C5F8E54976BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

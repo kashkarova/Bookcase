@@ -1,5 +1,3 @@
-using Ninject.Modules;
-
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Bookcase.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Bookcase.Web.App_Start.NinjectWebCommon), "Stop")]
 
@@ -12,9 +10,8 @@ namespace Bookcase.Web.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Bookcase.DI;
-    using System.Web.Mvc;
     using Bookcase.DI.Modules;
+    using Ninject.Modules;
 
     public static class NinjectWebCommon 
     {
@@ -78,6 +75,6 @@ namespace Bookcase.Web.App_Start
 
             kernel.Load(dalModules);
             kernel.Load(serviceModules);
-        }
+        }        
     }
 }

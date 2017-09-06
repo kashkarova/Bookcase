@@ -6,6 +6,13 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    @Styles.Render("/KendoUI/styles/kendo.common.min.css")
+    @Styles.Render("/KendoUI/styles/kendo.default.min.css")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("/KendoUI/js/kendo.web.min.js")
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -35,8 +42,7 @@
     </footer>
 </div>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
+
 @RenderSection("scripts", false)
 </body>
 </html>

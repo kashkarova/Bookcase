@@ -8,11 +8,11 @@ namespace Bookcase.BLL.Services.Interfaces
 {
     public interface IBookService
     {
-        BookDTO Get(int id);
-        List<BookDTO> GetAll();
-        List<BookDTO> GetAll(Expression<Func<BookEntity, bool>> predicate);
+        Book Get(int id);
+        List<Book> GetAll();
+        List<Book> GetAll(Expression<Func<BookEntity, bool>> predicate);
 
-        BookDTO First(Expression<Func<BookEntity, bool>> predicate);
+        Book First(Expression<Func<BookEntity, bool>> predicate);
 
         bool Exists(int id);
         bool Exists(Expression<Func<BookEntity, bool>> predicate);

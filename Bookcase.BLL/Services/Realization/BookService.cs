@@ -15,31 +15,31 @@ namespace Bookcase.BLL.Services.Realization
 
         public BookService(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork;           
+            _unitOfWork = unitOfWork;
         }
 
-        public BookDTO Get(int id)
+        public Book Get(int id)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, BookDTO>());
-            return Mapper.Map<BookEntity, BookDTO>(_unitOfWork.BookRepository.Get(id));
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>());
+            return Mapper.Map<BookEntity, Book>(_unitOfWork.BookRepository.Get(id));
         }
 
-        public List<BookDTO> GetAll()
+        public List<Book> GetAll()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, BookDTO>()); 
-            return Mapper.Map<List<BookEntity>, List<BookDTO>>(_unitOfWork.BookRepository.GetAll());
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>());
+            return Mapper.Map<List<BookEntity>, List<Book>>(_unitOfWork.BookRepository.GetAll());
         }
 
-        public List<BookDTO> GetAll(Expression<Func<BookEntity, bool>> predicate)
+        public List<Book> GetAll(Expression<Func<BookEntity, bool>> predicate)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, BookDTO>());
-            return Mapper.Map<List<BookEntity>, List<BookDTO>>(_unitOfWork.BookRepository.GetAll(predicate));
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>());
+            return Mapper.Map<List<BookEntity>, List<Book>>(_unitOfWork.BookRepository.GetAll(predicate));
         }
 
-        public BookDTO First(Expression<Func<BookEntity, bool>> predicate)
+        public Book First(Expression<Func<BookEntity, bool>> predicate)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, BookDTO>());
-            return Mapper.Map<BookEntity, BookDTO>(_unitOfWork.BookRepository.First(predicate));
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>());
+            return Mapper.Map<BookEntity, Book>(_unitOfWork.BookRepository.First(predicate));
         }
 
         public bool Exists(int id)

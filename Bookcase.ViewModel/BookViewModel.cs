@@ -6,6 +6,8 @@ namespace Bookcase.ViewModel
 {
     public class BookViewModel
     {
+        public int Id { get; set; }
+
         [Required]
         [DisplayName("Title of book")]
         public string Title { get; set; }
