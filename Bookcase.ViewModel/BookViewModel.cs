@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using Microsoft.Build.Framework;
+using System.ComponentModel.DataAnnotations;
 
 namespace Bookcase.ViewModel
 {
@@ -18,6 +19,10 @@ namespace Bookcase.ViewModel
 
         [Required]
         [DisplayName("Year of publishing")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Year { get; set; }
+
+        public virtual List<AuthorViewModel> Authors { get; set; }
     }
 }

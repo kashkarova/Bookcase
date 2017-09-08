@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Bookcase.BLL.DTO
 {
@@ -13,5 +14,7 @@ namespace Bookcase.BLL.DTO
         public string Country { get; set; }
 
         public string Photo { get; set; }
+
+        public virtual List<Book> Books { get; set; }
     }
 }

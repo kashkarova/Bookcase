@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using Microsoft.Build.Framework;
+using System.ComponentModel.DataAnnotations;
 
 namespace Bookcase.ViewModel
 {
@@ -14,6 +15,8 @@ namespace Bookcase.ViewModel
 
         [Required]
         [DisplayName("Date of birth")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
 
         [Required]
@@ -22,5 +25,7 @@ namespace Bookcase.ViewModel
 
         [DisplayName("Photo")]
         public string Photo { get; set; }
+
+        public virtual List<BookViewModel> Books { get; set; }
     }
 }

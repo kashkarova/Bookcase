@@ -90,18 +90,18 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
@@ -155,7 +155,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
-      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -166,6 +166,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Automapper\AutomapperInitializer.cs" />
+    <Compile Include="Automapper\AutomapperViewModelToDomainProfile.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -177,16 +179,16 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="KendoUI\js\jquery.min.map" />
     <Content Include="KendoUI\js\kendo.all.min.js.map" />
     <Content Include="KendoUI\js\kendo.angular.min.js.map" />
@@ -199,24 +201,10 @@
     <Content Include="KendoUI\js\kendo.columnmenu.min.js.map" />
     <Content Include="KendoUI\js\kendo.columnsorter.min.js.map" />
     <Content Include="KendoUI\js\kendo.combobox.min.js.map" />
-    <Content Include="KendoUI\js\kendo.core.min.js.map" />
     <Content Include="KendoUI\js\kendo.data.min.js.map" />
     <Content Include="KendoUI\js\kendo.data.odata.min.js.map" />
     <Content Include="KendoUI\js\kendo.data.signalr.min.js.map" />
     <Content Include="KendoUI\js\kendo.data.xml.min.js.map" />
-    <Content Include="KendoUI\js\kendo.dataviz.barcode.min.js.map" />
-    <Content Include="KendoUI\js\kendo.dataviz.chart.min.js.map" />
-    <Content Include="KendoUI\js\kendo.dataviz.core.min.js.map" />
-    <Content Include="KendoUI\js\kendo.dataviz.diagram.min.js.map" />
-    <Content Include="KendoUI\js\kendo.dataviz.gauge.min.js.map" />
-    <Content Include="KendoUI\js\kendo.dataviz.map.min.js.map" />
-    <Content Include="KendoUI\js\kendo.dataviz.min.js.map" />
-    <Content Include="KendoUI\js\kendo.dataviz.mobile.min.js.map" />
-    <Content Include="KendoUI\js\kendo.dataviz.qrcode.min.js.map" />
-    <Content Include="KendoUI\js\kendo.dataviz.sparkline.min.js.map" />
-    <Content Include="KendoUI\js\kendo.dataviz.stock.min.js.map" />
-    <Content Include="KendoUI\js\kendo.dataviz.themes.min.js.map" />
-    <Content Include="KendoUI\js\kendo.dataviz.treemap.min.js.map" />
     <Content Include="KendoUI\js\kendo.dateinput.min.js.map" />
     <Content Include="KendoUI\js\kendo.datepicker.min.js.map" />
     <Content Include="KendoUI\js\kendo.datetimepicker.min.js.map" />
@@ -227,14 +215,10 @@
     <Content Include="KendoUI\js\kendo.dropdownlist.min.js.map" />
     <Content Include="KendoUI\js\kendo.editable.min.js.map" />
     <Content Include="KendoUI\js\kendo.editor.min.js.map" />
-    <Content Include="KendoUI\js\kendo.excel.min.js.map" />
     <Content Include="KendoUI\js\kendo.filebrowser.min.js.map" />
     <Content Include="KendoUI\js\kendo.filtercell.min.js.map" />
     <Content Include="KendoUI\js\kendo.filtermenu.min.js.map" />
     <Content Include="KendoUI\js\kendo.fx.min.js.map" />
-    <Content Include="KendoUI\js\kendo.gantt.list.min.js.map" />
-    <Content Include="KendoUI\js\kendo.gantt.min.js.map" />
-    <Content Include="KendoUI\js\kendo.gantt.timeline.min.js.map" />
     <Content Include="KendoUI\js\kendo.grid.min.js.map" />
     <Content Include="KendoUI\js\kendo.groupable.min.js.map" />
     <Content Include="KendoUI\js\kendo.imagebrowser.min.js.map" />
@@ -244,33 +228,12 @@
     <Content Include="KendoUI\js\kendo.maskedtextbox.min.js.map" />
     <Content Include="KendoUI\js\kendo.mediaplayer.min.js.map" />
     <Content Include="KendoUI\js\kendo.menu.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.actionsheet.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.application.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.button.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.buttongroup.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.collapsible.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.drawer.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.listview.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.loader.min.js.map" />
     <Content Include="KendoUI\js\kendo.mobile.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.modalview.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.navbar.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.pane.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.popover.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.scroller.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.scrollview.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.shim.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.splitview.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.switch.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.tabstrip.min.js.map" />
-    <Content Include="KendoUI\js\kendo.mobile.view.min.js.map" />
     <Content Include="KendoUI\js\kendo.multiselect.min.js.map" />
     <Content Include="KendoUI\js\kendo.notification.min.js.map" />
     <Content Include="KendoUI\js\kendo.numerictextbox.min.js.map" />
-    <Content Include="KendoUI\js\kendo.ooxml.min.js.map" />
     <Content Include="KendoUI\js\kendo.pager.min.js.map" />
     <Content Include="KendoUI\js\kendo.panelbar.min.js.map" />
-    <Content Include="KendoUI\js\kendo.pdf.min.js.map" />
     <Content Include="KendoUI\js\kendo.pivot.configurator.min.js.map" />
     <Content Include="KendoUI\js\kendo.pivot.fieldmenu.min.js.map" />
     <Content Include="KendoUI\js\kendo.pivotgrid.min.js.map" />
@@ -280,13 +243,6 @@
     <Content Include="KendoUI\js\kendo.resizable.min.js.map" />
     <Content Include="KendoUI\js\kendo.responsivepanel.min.js.map" />
     <Content Include="KendoUI\js\kendo.router.min.js.map" />
-    <Content Include="KendoUI\js\kendo.scheduler.agendaview.min.js.map" />
-    <Content Include="KendoUI\js\kendo.scheduler.dayview.min.js.map" />
-    <Content Include="KendoUI\js\kendo.scheduler.min.js.map" />
-    <Content Include="KendoUI\js\kendo.scheduler.monthview.min.js.map" />
-    <Content Include="KendoUI\js\kendo.scheduler.recurrence.min.js.map" />
-    <Content Include="KendoUI\js\kendo.scheduler.timelineview.min.js.map" />
-    <Content Include="KendoUI\js\kendo.scheduler.view.min.js.map" />
     <Content Include="KendoUI\js\kendo.selectable.min.js.map" />
     <Content Include="KendoUI\js\kendo.slider.min.js.map" />
     <Content Include="KendoUI\js\kendo.sortable.min.js.map" />
@@ -308,82 +264,14 @@
     <Content Include="KendoUI\js\kendo.virtuallist.min.js.map" />
     <Content Include="KendoUI\js\kendo.web.min.js.map" />
     <Content Include="KendoUI\js\kendo.window.min.js.map" />
-    <Content Include="KendoUI\styles\kendo.black.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.black.mobile.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.blueopal.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.blueopal.mobile.min.css.map" />
     <Content Include="KendoUI\styles\kendo.bootstrap-v4.min.css.map" />
     <Content Include="KendoUI\styles\kendo.bootstrap.min.css.map" />
     <Content Include="KendoUI\styles\kendo.bootstrap.mobile.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.common-bootstrap.core.min.css.map" />
     <Content Include="KendoUI\styles\kendo.common-bootstrap.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.common-fiori.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.common-material.core.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.common-material.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.common-nova.core.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.common-nova.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.common-office365.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.common.core.min.css.map" />
     <Content Include="KendoUI\styles\kendo.common.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.black.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.blueopal.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.bootstrap.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.default.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.fiori.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.flat.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.highcontrast.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.material.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.materialblack.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.metro.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.metroblack.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.mobile.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.moonlight.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.nova.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.office365.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.silver.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.dataviz.uniform.min.css.map" />
     <Content Include="KendoUI\styles\kendo.default-v2.min.css.map" />
     <Content Include="KendoUI\styles\kendo.default.min.css.map" />
     <Content Include="KendoUI\styles\kendo.default.mobile.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.fiori.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.fiori.mobile.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.flat.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.flat.mobile.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.highcontrast.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.highcontrast.mobile.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.material.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.material.mobile.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.materialblack.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.materialblack.mobile.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.metro.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.metro.mobile.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.metroblack.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.metroblack.mobile.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.mobile.all.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.mobile.android.dark.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.mobile.android.light.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.mobile.blackberry.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.mobile.common.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.mobile.fiori.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.mobile.flat.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.mobile.ios.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.mobile.material.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.mobile.meego.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.mobile.nova.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.mobile.office365.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.mobile.wp8.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.moonlight.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.moonlight.mobile.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.nova.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.nova.mobile.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.office365.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.office365.mobile.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.rtl.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.silver.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.silver.mobile.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.uniform.min.css.map" />
-    <Content Include="KendoUI\styles\kendo.uniform.mobile.min.css.map" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="KendoUI\js\angular.min.js" />
     <Content Include="KendoUI\js\jquery.min.js" />
@@ -399,24 +287,10 @@
     <Content Include="KendoUI\js\kendo.columnmenu.min.js" />
     <Content Include="KendoUI\js\kendo.columnsorter.min.js" />
     <Content Include="KendoUI\js\kendo.combobox.min.js" />
-    <Content Include="KendoUI\js\kendo.core.min.js" />
     <Content Include="KendoUI\js\kendo.data.min.js" />
     <Content Include="KendoUI\js\kendo.data.odata.min.js" />
     <Content Include="KendoUI\js\kendo.data.signalr.min.js" />
     <Content Include="KendoUI\js\kendo.data.xml.min.js" />
-    <Content Include="KendoUI\js\kendo.dataviz.barcode.min.js" />
-    <Content Include="KendoUI\js\kendo.dataviz.chart.min.js" />
-    <Content Include="KendoUI\js\kendo.dataviz.core.min.js" />
-    <Content Include="KendoUI\js\kendo.dataviz.diagram.min.js" />
-    <Content Include="KendoUI\js\kendo.dataviz.gauge.min.js" />
-    <Content Include="KendoUI\js\kendo.dataviz.map.min.js" />
-    <Content Include="KendoUI\js\kendo.dataviz.min.js" />
-    <Content Include="KendoUI\js\kendo.dataviz.mobile.min.js" />
-    <Content Include="KendoUI\js\kendo.dataviz.qrcode.min.js" />
-    <Content Include="KendoUI\js\kendo.dataviz.sparkline.min.js" />
-    <Content Include="KendoUI\js\kendo.dataviz.stock.min.js" />
-    <Content Include="KendoUI\js\kendo.dataviz.themes.min.js" />
-    <Content Include="KendoUI\js\kendo.dataviz.treemap.min.js" />
     <Content Include="KendoUI\js\kendo.dateinput.min.js" />
     <Content Include="KendoUI\js\kendo.datepicker.min.js" />
     <Content Include="KendoUI\js\kendo.datetimepicker.min.js" />
@@ -427,14 +301,10 @@
     <Content Include="KendoUI\js\kendo.dropdownlist.min.js" />
     <Content Include="KendoUI\js\kendo.editable.min.js" />
     <Content Include="KendoUI\js\kendo.editor.min.js" />
-    <Content Include="KendoUI\js\kendo.excel.min.js" />
     <Content Include="KendoUI\js\kendo.filebrowser.min.js" />
     <Content Include="KendoUI\js\kendo.filtercell.min.js" />
     <Content Include="KendoUI\js\kendo.filtermenu.min.js" />
     <Content Include="KendoUI\js\kendo.fx.min.js" />
-    <Content Include="KendoUI\js\kendo.gantt.list.min.js" />
-    <Content Include="KendoUI\js\kendo.gantt.min.js" />
-    <Content Include="KendoUI\js\kendo.gantt.timeline.min.js" />
     <Content Include="KendoUI\js\kendo.grid.min.js" />
     <Content Include="KendoUI\js\kendo.groupable.min.js" />
     <Content Include="KendoUI\js\kendo.imagebrowser.min.js" />
@@ -444,33 +314,12 @@
     <Content Include="KendoUI\js\kendo.maskedtextbox.min.js" />
     <Content Include="KendoUI\js\kendo.mediaplayer.min.js" />
     <Content Include="KendoUI\js\kendo.menu.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.actionsheet.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.application.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.button.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.buttongroup.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.collapsible.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.drawer.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.listview.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.loader.min.js" />
     <Content Include="KendoUI\js\kendo.mobile.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.modalview.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.navbar.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.pane.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.popover.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.scroller.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.scrollview.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.shim.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.splitview.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.switch.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.tabstrip.min.js" />
-    <Content Include="KendoUI\js\kendo.mobile.view.min.js" />
     <Content Include="KendoUI\js\kendo.multiselect.min.js" />
     <Content Include="KendoUI\js\kendo.notification.min.js" />
     <Content Include="KendoUI\js\kendo.numerictextbox.min.js" />
-    <Content Include="KendoUI\js\kendo.ooxml.min.js" />
     <Content Include="KendoUI\js\kendo.pager.min.js" />
     <Content Include="KendoUI\js\kendo.panelbar.min.js" />
-    <Content Include="KendoUI\js\kendo.pdf.min.js" />
     <Content Include="KendoUI\js\kendo.pivot.configurator.min.js" />
     <Content Include="KendoUI\js\kendo.pivot.fieldmenu.min.js" />
     <Content Include="KendoUI\js\kendo.pivotgrid.min.js" />
@@ -480,13 +329,6 @@
     <Content Include="KendoUI\js\kendo.resizable.min.js" />
     <Content Include="KendoUI\js\kendo.responsivepanel.min.js" />
     <Content Include="KendoUI\js\kendo.router.min.js" />
-    <Content Include="KendoUI\js\kendo.scheduler.agendaview.min.js" />
-    <Content Include="KendoUI\js\kendo.scheduler.dayview.min.js" />
-    <Content Include="KendoUI\js\kendo.scheduler.min.js" />
-    <Content Include="KendoUI\js\kendo.scheduler.monthview.min.js" />
-    <Content Include="KendoUI\js\kendo.scheduler.recurrence.min.js" />
-    <Content Include="KendoUI\js\kendo.scheduler.timelineview.min.js" />
-    <Content Include="KendoUI\js\kendo.scheduler.view.min.js" />
     <Content Include="KendoUI\js\kendo.selectable.min.js" />
     <Content Include="KendoUI\js\kendo.slider.min.js" />
     <Content Include="KendoUI\js\kendo.sortable.min.js" />
@@ -510,82 +352,14 @@
     <Content Include="KendoUI\js\kendo.webcomponents.js" />
     <Content Include="KendoUI\js\kendo.window.min.js" />
     <Content Include="KendoUI\js\pako_deflate.min.js" />
-    <Content Include="KendoUI\styles\kendo.black.min.css" />
-    <Content Include="KendoUI\styles\kendo.black.mobile.min.css" />
-    <Content Include="KendoUI\styles\kendo.blueopal.min.css" />
-    <Content Include="KendoUI\styles\kendo.blueopal.mobile.min.css" />
     <Content Include="KendoUI\styles\kendo.bootstrap-v4.min.css" />
     <Content Include="KendoUI\styles\kendo.bootstrap.min.css" />
     <Content Include="KendoUI\styles\kendo.bootstrap.mobile.min.css" />
-    <Content Include="KendoUI\styles\kendo.common-bootstrap.core.min.css" />
     <Content Include="KendoUI\styles\kendo.common-bootstrap.min.css" />
-    <Content Include="KendoUI\styles\kendo.common-fiori.min.css" />
-    <Content Include="KendoUI\styles\kendo.common-material.core.min.css" />
-    <Content Include="KendoUI\styles\kendo.common-material.min.css" />
-    <Content Include="KendoUI\styles\kendo.common-nova.core.min.css" />
-    <Content Include="KendoUI\styles\kendo.common-nova.min.css" />
-    <Content Include="KendoUI\styles\kendo.common-office365.min.css" />
-    <Content Include="KendoUI\styles\kendo.common.core.min.css" />
     <Content Include="KendoUI\styles\kendo.common.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.black.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.blueopal.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.bootstrap.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.default.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.fiori.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.flat.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.highcontrast.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.material.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.materialblack.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.metro.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.metroblack.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.mobile.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.moonlight.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.nova.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.office365.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.silver.min.css" />
-    <Content Include="KendoUI\styles\kendo.dataviz.uniform.min.css" />
     <Content Include="KendoUI\styles\kendo.default-v2.min.css" />
     <Content Include="KendoUI\styles\kendo.default.min.css" />
     <Content Include="KendoUI\styles\kendo.default.mobile.min.css" />
-    <Content Include="KendoUI\styles\kendo.fiori.min.css" />
-    <Content Include="KendoUI\styles\kendo.fiori.mobile.min.css" />
-    <Content Include="KendoUI\styles\kendo.flat.min.css" />
-    <Content Include="KendoUI\styles\kendo.flat.mobile.min.css" />
-    <Content Include="KendoUI\styles\kendo.highcontrast.min.css" />
-    <Content Include="KendoUI\styles\kendo.highcontrast.mobile.min.css" />
-    <Content Include="KendoUI\styles\kendo.material.min.css" />
-    <Content Include="KendoUI\styles\kendo.material.mobile.min.css" />
-    <Content Include="KendoUI\styles\kendo.materialblack.min.css" />
-    <Content Include="KendoUI\styles\kendo.materialblack.mobile.min.css" />
-    <Content Include="KendoUI\styles\kendo.metro.min.css" />
-    <Content Include="KendoUI\styles\kendo.metro.mobile.min.css" />
-    <Content Include="KendoUI\styles\kendo.metroblack.min.css" />
-    <Content Include="KendoUI\styles\kendo.metroblack.mobile.min.css" />
-    <Content Include="KendoUI\styles\kendo.mobile.all.min.css" />
-    <Content Include="KendoUI\styles\kendo.mobile.android.dark.min.css" />
-    <Content Include="KendoUI\styles\kendo.mobile.android.light.min.css" />
-    <Content Include="KendoUI\styles\kendo.mobile.blackberry.min.css" />
-    <Content Include="KendoUI\styles\kendo.mobile.common.min.css" />
-    <Content Include="KendoUI\styles\kendo.mobile.fiori.min.css" />
-    <Content Include="KendoUI\styles\kendo.mobile.flat.min.css" />
-    <Content Include="KendoUI\styles\kendo.mobile.ios.min.css" />
-    <Content Include="KendoUI\styles\kendo.mobile.material.min.css" />
-    <Content Include="KendoUI\styles\kendo.mobile.meego.min.css" />
-    <Content Include="KendoUI\styles\kendo.mobile.nova.min.css" />
-    <Content Include="KendoUI\styles\kendo.mobile.office365.min.css" />
-    <Content Include="KendoUI\styles\kendo.mobile.wp8.min.css" />
-    <Content Include="KendoUI\styles\kendo.moonlight.min.css" />
-    <Content Include="KendoUI\styles\kendo.moonlight.mobile.min.css" />
-    <Content Include="KendoUI\styles\kendo.nova.min.css" />
-    <Content Include="KendoUI\styles\kendo.nova.mobile.min.css" />
-    <Content Include="KendoUI\styles\kendo.office365.min.css" />
-    <Content Include="KendoUI\styles\kendo.office365.mobile.min.css" />
-    <Content Include="KendoUI\styles\kendo.rtl.min.css" />
-    <Content Include="KendoUI\styles\kendo.silver.min.css" />
-    <Content Include="KendoUI\styles\kendo.silver.mobile.min.css" />
-    <Content Include="KendoUI\styles\kendo.uniform.min.css" />
-    <Content Include="KendoUI\styles\kendo.uniform.mobile.min.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -617,6 +391,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Book\Create.cshtml" />
+    <Content Include="Views\Book\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -633,7 +409,7 @@
       <Name>Bookcase.BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bookcase.DI\Bookcase.DI.csproj">
-      <Project>{B3EF0D64-ED13-412B-A69D-F6A530D35B12}</Project>
+      <Project>{2001D604-123E-45F4-8B3F-DF983EF4D62D}</Project>
       <Name>Bookcase.DI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bookcase.ViewModel\Bookcase.ViewModel.csproj">

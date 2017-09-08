@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Bookcase.Web.Automapper;
 
 namespace Bookcase.Web
 {
@@ -9,6 +10,8 @@ namespace Bookcase.Web
     {
         protected void Application_Start()
         {
+            AutomapperInitializer.Initialize();
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

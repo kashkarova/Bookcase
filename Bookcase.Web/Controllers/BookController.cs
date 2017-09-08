@@ -4,6 +4,7 @@ using AutoMapper;
 using Bookcase.BLL.DTO;
 using Bookcase.BLL.Services.Interfaces;
 using Bookcase.ViewModel;
+using Bookcase.Web.Automapper;
 
 namespace Bookcase.Web.Controllers
 {
@@ -18,9 +19,7 @@ namespace Bookcase.Web.Controllers
 
         public ActionResult Index()
         {
-            var bookDtos = _bookService.GetAll();
-            Mapper.Initialize(cfg => cfg.CreateMap<Book, BookViewModel>());
-            var boo = Mapper.Map<List<Book>, List<BookViewModel>>(bookDtos);
+            var boo = Mapper.Map<List<Book>, List<BookViewModel>>(_bookService.GetAll());
             return View(boo);
         }
 
@@ -38,11 +37,13 @@ namespace Bookcase.Web.Controllers
 
         // POST: Book/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(BookViewModel book)
         {
             try
             {
-                // TODO: Add insert logic here
+                var createBook = Mapper.Map<BookViewModel, Book>(book);
+
+                _bookService.Create(createBook);
 
                 return RedirectToAction("Index");
             }
@@ -53,19 +54,25 @@ namespace Bookcase.Web.Controllers
         }
 
         // GET: Book/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+                return HttpNotFound();
+
+            // Выполняем сопоставление
+            var editBook = Mapper.Map<Book, BookViewModel>(_bookService.Get(id.Value));
+            return View(editBook);
         }
 
         // POST: Book/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(BookViewModel book)
         {
             try
             {
-                // TODO: Add update logic here
+                var editedBook = Mapper.Map<BookViewModel, Book>(book);
 
+                _bookService.Update(editedBook);
                 return RedirectToAction("Index");
             }
             catch

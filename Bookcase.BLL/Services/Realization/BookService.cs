@@ -20,26 +20,35 @@ namespace Bookcase.BLL.Services.Realization
 
         public Book Get(int id)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>());
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
             return Mapper.Map<BookEntity, Book>(_unitOfWork.BookRepository.Get(id));
         }
 
         public List<Book> GetAll()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>());
-            return Mapper.Map<List<BookEntity>, List<Book>>(_unitOfWork.BookRepository.GetAll());
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
+            var unmappedList = _unitOfWork.BookRepository.GetAll();
+
+            var listOfBooks = Mapper.Map<List<BookEntity>, List<Book>>(unmappedList);
+
+            return listOfBooks;
         }
 
-        public List<Book> GetAll(Expression<Func<BookEntity, bool>> predicate)
+        public List<Book> GetAll(Expression<Func<Book, bool>> predicate)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>());
-            return Mapper.Map<List<BookEntity>, List<Book>>(_unitOfWork.BookRepository.GetAll(predicate));
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
+            var mappedPredicate =
+                Mapper.Map<Expression<Func<Book, bool>>, Expression<Func<BookEntity, bool>>>(predicate);
+            return Mapper.Map<List<BookEntity>, List<Book>>(_unitOfWork.BookRepository.GetAll(mappedPredicate));
         }
 
-        public Book First(Expression<Func<BookEntity, bool>> predicate)
+        public Book First(Expression<Func<Book, bool>> predicate)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>());
-            return Mapper.Map<BookEntity, Book>(_unitOfWork.BookRepository.First(predicate));
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
+            var mappedPredicate =
+                Mapper.Map<Expression<Func<Book, bool>>, Expression<Func<BookEntity, bool>>>(predicate);
+
+            return Mapper.Map<BookEntity, Book>(_unitOfWork.BookRepository.First(mappedPredicate));
         }
 
         public bool Exists(int id)
@@ -47,9 +56,13 @@ namespace Bookcase.BLL.Services.Realization
             return _unitOfWork.BookRepository.Exists(id);
         }
 
-        public bool Exists(Expression<Func<BookEntity, bool>> predicate)
+        public bool Exists(Expression<Func<Book, bool>> predicate)
         {
-            return _unitOfWork.BookRepository.Exists(predicate);
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
+            var mappedPredicate =
+                Mapper.Map<Expression<Func<Book, bool>>, Expression<Func<BookEntity, bool>>>(predicate);
+
+            return _unitOfWork.BookRepository.Exists(mappedPredicate);
         }
 
         public int Count()
@@ -57,20 +70,32 @@ namespace Bookcase.BLL.Services.Realization
             return _unitOfWork.BookRepository.Count();
         }
 
-        public int Count(Expression<Func<BookEntity, bool>> predicate)
+        public int Count(Expression<Func<Book, bool>> predicate)
         {
-            return _unitOfWork.BookRepository.Count(predicate);
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
+            var mappedPredicate =
+                Mapper.Map<Expression<Func<Book, bool>>, Expression<Func<BookEntity, bool>>>(predicate);
+
+            return _unitOfWork.BookRepository.Count(mappedPredicate);
         }
 
-        public void Create(BookEntity item)
+        public void Create(Book item)
         {
-            _unitOfWork.BookRepository.Create(item);
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
+
+            var mappedBook = Mapper.Map<Book, BookEntity>(item);
+
+            _unitOfWork.BookRepository.Create(mappedBook);
             _unitOfWork.Save();
         }
 
-        public void Update(BookEntity item)
+        public void Update(Book item)
         {
-            _unitOfWork.BookRepository.Update(item);
+            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
+
+            var mappedBook = Mapper.Map<Book, BookEntity>(item);
+
+            _unitOfWork.BookRepository.Update(mappedBook);
             _unitOfWork.Save();
         }
 

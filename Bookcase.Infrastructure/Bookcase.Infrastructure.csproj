@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{963BF2F8-CA93-4661-817C-D535741F1898}</ProjectGuid>
+    <ProjectGuid>{EC4EAF1B-8DC9-481D-B770-7E29B0081C33}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bookcase.ViewModel</RootNamespace>
-    <AssemblyName>Bookcase.ViewModel</AssemblyName>
+    <RootNamespace>Bookcase.Infrastructure</RootNamespace>
+    <AssemblyName>Bookcase.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,9 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,9 +43,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthorViewModel.cs" />
-    <Compile Include="BookViewModel.cs" />
+    <Compile Include="MappingModels\AutomapperEFToDomainProfile.cs" />
+    <Compile Include="MappingModels\AutomapperViewModelToDomainProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bookcase.BLL\Bookcase.BLL.csproj">
+      <Project>{88A77260-3887-4C8B-AD8C-438BDEDA966D}</Project>
+      <Name>Bookcase.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bookcase.DAL\Bookcase.DAL.csproj">
+      <Project>{AB5EABDF-29DB-485D-BACC-B2FA8C87EE30}</Project>
+      <Name>Bookcase.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bookcase.ViewModel\Bookcase.ViewModel.csproj">
+      <Project>{963BF2F8-CA93-4661-817C-D535741F1898}</Project>
+      <Name>Bookcase.ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Automapper\AutomapperEFToDomainProfile.cs" />
     <Compile Include="DTO\Author.cs" />
     <Compile Include="DTO\Book.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -52,13 +53,13 @@
     <Compile Include="Services\Realization\BookService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Services\Realization\packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Bookcase.DAL\Bookcase.DAL.csproj">
       <Project>{ab5eabdf-29db-485d-bacc-b2fa8c87ee30}</Project>
       <Name>Bookcase.DAL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Services\Realization\packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

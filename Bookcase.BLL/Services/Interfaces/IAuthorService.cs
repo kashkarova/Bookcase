@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Bookcase.BLL.DTO;
-using Bookcase.DAL.DbEntities;
 
 namespace Bookcase.BLL.Services.Interfaces
 {
@@ -10,18 +9,18 @@ namespace Bookcase.BLL.Services.Interfaces
     {
         Author Get(int id);
         List<Author> GetAll();
-        List<Author> GetAll(Expression<Func<AuthorEntity, bool>> predicate);
+        List<Author> GetAll(Expression<Func<Author, bool>> predicate);
 
-        Author First(Expression<Func<AuthorEntity, bool>> predicate);
+        Author First(Expression<Func<Author, bool>> predicate);
 
         bool Exists(int id);
-        bool Exists(Expression<Func<AuthorEntity, bool>> predicate);
+        bool Exists(Expression<Func<Author, bool>> predicate);
 
         int Count();
-        int Count(Expression<Func<AuthorEntity, bool>> predicate);
+        int Count(Expression<Func<Author, bool>> predicate);
 
-        void Create(AuthorEntity item);
-        void Update(AuthorEntity item);
+        void Create(Author item);
+        void Update(Author item);
         void Delete(int id);
     }
 }

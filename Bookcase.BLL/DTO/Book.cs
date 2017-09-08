@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Bookcase.BLL.DTO
 {
@@ -11,5 +12,7 @@ namespace Bookcase.BLL.DTO
         public string PublishingHouse { get; set; }
 
         public DateTime Year { get; set; }
+
+        public virtual List<Author> Authors { get; set; }
     }
 }
