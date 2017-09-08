@@ -1,13 +1,14 @@
 ﻿using System.Data.Entity;
 using Bookcase.DAL.DbEntities;
+using Bookcase.DAL.Migrations;
 
 namespace Bookcase.DAL.DbContext
 {
     public class BookcaseContext : System.Data.Entity.DbContext
     {
-        public BookcaseContext()
+        public BookcaseContext() : base("BookcaseDb")
         {
-            Database.SetInitializer(new CreateDatabaseIfNotExists<BookcaseContext>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<BookcaseContext, Configuration>());
         }
 
         public DbSet<BookEntity> Book { get; set; }

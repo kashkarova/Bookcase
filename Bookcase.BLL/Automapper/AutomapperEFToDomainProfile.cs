@@ -13,7 +13,7 @@ namespace Bookcase.BLL.Automapper
                 .ForMember(dst => dst.Title, src => src.MapFrom(x => x.Title))
                 .ForMember(dst => dst.Year, src => src.MapFrom(x => x.Year))
                 .ForMember(dst => dst.PublishingHouse, src => src.MapFrom(x => x.PublishingHouse))
-                .ForMember(dst=>dst.Authors, src => src.MapFrom(x => x.Authors));
+                .ForMember(dst => dst.Authors, src => src.MapFrom(x => x.Authors));
 
             CreateMap<Book, BookEntity>()
                 .ForMember(dst => dst.Id, src => src.MapFrom(x => x.Id))
@@ -28,7 +28,7 @@ namespace Bookcase.BLL.Automapper
                 .ForMember(dst => dst.DateOfBirth, src => src.MapFrom(x => x.DateOfBirth))
                 .ForMember(dst => dst.Country, src => src.MapFrom(x => x.Country))
                 .ForMember(dst => dst.Photo, src => src.MapFrom(x => x.Photo))
-                .ForMember(dst=>dst.Books, src => src.MapFrom(x => x.Books));
+                .ForMember(dst => dst.Books, src => src.MapFrom(x => x.Books));
 
             CreateMap<Author, AuthorEntity>()
                 .ForMember(dst => dst.Id, src => src.MapFrom(x => x.Id))

@@ -4,7 +4,6 @@ using AutoMapper;
 using Bookcase.BLL.DTO;
 using Bookcase.BLL.Services.Interfaces;
 using Bookcase.ViewModel;
-using Bookcase.Web.Automapper;
 
 namespace Bookcase.Web.Controllers
 {
@@ -59,7 +58,6 @@ namespace Bookcase.Web.Controllers
             if (id == null)
                 return HttpNotFound();
 
-            // Выполняем сопоставление
             var editBook = Mapper.Map<Book, BookViewModel>(_bookService.Get(id.Value));
             return View(editBook);
         }
@@ -68,17 +66,10 @@ namespace Bookcase.Web.Controllers
         [HttpPost]
         public ActionResult Edit(BookViewModel book)
         {
-            try
-            {
-                var editedBook = Mapper.Map<BookViewModel, Book>(book);
+            var editedBook = Mapper.Map<BookViewModel, Book>(book);
 
-                _bookService.Update(editedBook);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            _bookService.Update(editedBook);
+            return RedirectToAction("Index");
         }
 
         // GET: Book/Delete/5

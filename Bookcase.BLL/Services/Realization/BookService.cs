@@ -20,35 +20,39 @@ namespace Bookcase.BLL.Services.Realization
 
         public Book Get(int id)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
-            return Mapper.Map<BookEntity, Book>(_unitOfWork.BookRepository.Get(id));
+            var unmappedBook = _unitOfWork.BookRepository.Get(id);
+            var mappedBook = Mapper.Map<BookEntity, Book>(unmappedBook);
+
+            return mappedBook;
         }
 
         public List<Book> GetAll()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
-            var unmappedList = _unitOfWork.BookRepository.GetAll();
+            var unmappedBooks = _unitOfWork.BookRepository.GetAll();
 
-            var listOfBooks = Mapper.Map<List<BookEntity>, List<Book>>(unmappedList);
+            var mappedBooks = Mapper.Map<List<BookEntity>, List<Book>>(unmappedBooks);
 
-            return listOfBooks;
+            return mappedBooks;
         }
 
         public List<Book> GetAll(Expression<Func<Book, bool>> predicate)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
             var mappedPredicate =
                 Mapper.Map<Expression<Func<Book, bool>>, Expression<Func<BookEntity, bool>>>(predicate);
-            return Mapper.Map<List<BookEntity>, List<Book>>(_unitOfWork.BookRepository.GetAll(mappedPredicate));
+
+            var mappedBooks= Mapper.Map<List<BookEntity>, List<Book>>(_unitOfWork.BookRepository.GetAll(mappedPredicate));
+
+            return mappedBooks;
         }
 
         public Book First(Expression<Func<Book, bool>> predicate)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
             var mappedPredicate =
                 Mapper.Map<Expression<Func<Book, bool>>, Expression<Func<BookEntity, bool>>>(predicate);
 
-            return Mapper.Map<BookEntity, Book>(_unitOfWork.BookRepository.First(mappedPredicate));
+            var mappedBook= Mapper.Map<BookEntity, Book>(_unitOfWork.BookRepository.First(mappedPredicate));
+
+            return mappedBook;
         }
 
         public bool Exists(int id)
@@ -58,7 +62,6 @@ namespace Bookcase.BLL.Services.Realization
 
         public bool Exists(Expression<Func<Book, bool>> predicate)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
             var mappedPredicate =
                 Mapper.Map<Expression<Func<Book, bool>>, Expression<Func<BookEntity, bool>>>(predicate);
 
@@ -72,7 +75,6 @@ namespace Bookcase.BLL.Services.Realization
 
         public int Count(Expression<Func<Book, bool>> predicate)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
             var mappedPredicate =
                 Mapper.Map<Expression<Func<Book, bool>>, Expression<Func<BookEntity, bool>>>(predicate);
 
@@ -81,8 +83,6 @@ namespace Bookcase.BLL.Services.Realization
 
         public void Create(Book item)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
-
             var mappedBook = Mapper.Map<Book, BookEntity>(item);
 
             _unitOfWork.BookRepository.Create(mappedBook);
@@ -91,8 +91,6 @@ namespace Bookcase.BLL.Services.Realization
 
         public void Update(Book item)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BookEntity, Book>().ReverseMap());
-
             var mappedBook = Mapper.Map<Book, BookEntity>(item);
 
             _unitOfWork.BookRepository.Update(mappedBook);
