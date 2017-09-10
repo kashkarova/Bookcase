@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Bookcase.BLL.DTO;
+using Bookcase.BLL.DomainModels;
 using Bookcase.ViewModel;
 
 namespace Bookcase.Web.Automapper

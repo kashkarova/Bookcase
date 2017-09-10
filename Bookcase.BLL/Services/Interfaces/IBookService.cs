@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Bookcase.BLL.DTO;
+using Bookcase.BLL.DomainModels;
 
 namespace Bookcase.BLL.Services.Interfaces
 {
@@ -19,8 +19,8 @@ namespace Bookcase.BLL.Services.Interfaces
         int Count();
         int Count(Expression<Func<Book, bool>> predicate);
 
-        void Create(Book item);
-        void Update(Book item);
+        Book Create(Book item);
+        Book Update(Book item);
         void Delete(int id);
 
         void AddAuthorToBook(int bookId, int authorId);

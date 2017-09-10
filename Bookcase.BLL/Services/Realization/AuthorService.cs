@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using AutoMapper;
-using Bookcase.BLL.DTO;
+using Bookcase.BLL.DomainModels;
 using Bookcase.BLL.Services.Interfaces;
 using Bookcase.DAL.DbEntities;
 using Bookcase.DAL.UoW.Interfaces;
@@ -21,7 +21,7 @@ namespace Bookcase.BLL.Services.Realization
         public Author Get(int id)
         {
             var unmappedAuthor = _unitOfWork.AuthorRepository.Get(id);
-            var mappedAuthor= Mapper.Map<AuthorEntity, Author>(unmappedAuthor);
+            var mappedAuthor = Mapper.Map<AuthorEntity, Author>(unmappedAuthor);
 
             return mappedAuthor;
         }
@@ -39,7 +39,8 @@ namespace Bookcase.BLL.Services.Realization
             var mappedPredicate =
                 Mapper.Map<Expression<Func<Author, bool>>, Expression<Func<AuthorEntity, bool>>>(predicate);
 
-            var mappedAuthors= Mapper.Map<List<AuthorEntity>, List<Author>>(_unitOfWork.AuthorRepository.GetAll(mappedPredicate));
+            var mappedAuthors =
+                Mapper.Map<List<AuthorEntity>, List<Author>>(_unitOfWork.AuthorRepository.GetAll(mappedPredicate));
 
             return mappedAuthors;
         }
@@ -49,7 +50,7 @@ namespace Bookcase.BLL.Services.Realization
             var mappedPredicate =
                 Mapper.Map<Expression<Func<Author, bool>>, Expression<Func<AuthorEntity, bool>>>(predicate);
 
-            var mappedAuthor= Mapper.Map<AuthorEntity, Author>(_unitOfWork.AuthorRepository.First(mappedPredicate));
+            var mappedAuthor = Mapper.Map<AuthorEntity, Author>(_unitOfWork.AuthorRepository.First(mappedPredicate));
 
             return mappedAuthor;
         }

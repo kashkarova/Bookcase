@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
-using Bookcase.BLL.DTO;
+using Bookcase.BLL.DomainModels;
 using Bookcase.BLL.Services.Interfaces;
 using Bookcase.ViewModel;
 
@@ -18,14 +18,15 @@ namespace Bookcase.Web.Controllers
 
         public ActionResult Index()
         {
-            var boo = Mapper.Map<List<Book>, List<BookViewModel>>(_bookService.GetAll());
-            return View(boo);
+            var mappedBooks = Mapper.Map<List<Book>, List<BookViewModel>>(_bookService.GetAll());
+            return View(mappedBooks);
         }
 
         // GET: Book/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var mappedAuthors = Mapper.Map<List<Author>, List<AuthorViewModel>>(_bookService.Get(id).Authors);
+            return View(mappedAuthors);
         }
 
         // GET: Book/Create
@@ -38,18 +39,10 @@ namespace Bookcase.Web.Controllers
         [HttpPost]
         public ActionResult Create(BookViewModel book)
         {
-            try
-            {
-                var createBook = Mapper.Map<BookViewModel, Book>(book);
+            var mapCreatedBook = Mapper.Map<BookViewModel, Book>(book);
 
-                _bookService.Create(createBook);
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            _bookService.Create(mapCreatedBook);
+            return RedirectToAction("Index");
         }
 
         // GET: Book/Edit/5
@@ -66,32 +59,30 @@ namespace Bookcase.Web.Controllers
         [HttpPost]
         public ActionResult Edit(BookViewModel book)
         {
-            var editedBook = Mapper.Map<BookViewModel, Book>(book);
+            var mapEditedBook = Mapper.Map<BookViewModel, Book>(book);
 
-            _bookService.Update(editedBook);
+            _bookService.Update(mapEditedBook);
             return RedirectToAction("Index");
         }
 
         // GET: Book/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+                return HttpNotFound();
+
+            var deletedBook = Mapper.Map<Book, BookViewModel>(_bookService.Get(id.Value));
+
+            return View(deletedBook);
         }
 
         // POST: Book/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(BookViewModel book)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var mapDeletedBook = Mapper.Map<BookViewModel, Book>(book);
+            _bookService.Delete(mapDeletedBook.Id);
+            return RedirectToAction("Index");
         }
     }
 }

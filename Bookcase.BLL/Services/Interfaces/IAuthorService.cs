@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Bookcase.BLL.DTO;
+using Bookcase.BLL.DomainModels;
 
 namespace Bookcase.BLL.Services.Interfaces
 {

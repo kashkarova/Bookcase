@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
-using Bookcase.BLL.DTO;
+using Bookcase.BLL.DomainModels;
 using Bookcase.BLL.Services.Interfaces;
 using Bookcase.DAL.DbEntities;
 using Bookcase.DAL.UoW.Interfaces;
@@ -40,7 +41,8 @@ namespace Bookcase.BLL.Services.Realization
             var mappedPredicate =
                 Mapper.Map<Expression<Func<Book, bool>>, Expression<Func<BookEntity, bool>>>(predicate);
 
-            var mappedBooks= Mapper.Map<List<BookEntity>, List<Book>>(_unitOfWork.BookRepository.GetAll(mappedPredicate));
+            var mappedBooks =
+                Mapper.Map<List<BookEntity>, List<Book>>(_unitOfWork.BookRepository.GetAll(mappedPredicate));
 
             return mappedBooks;
         }
@@ -50,7 +52,7 @@ namespace Bookcase.BLL.Services.Realization
             var mappedPredicate =
                 Mapper.Map<Expression<Func<Book, bool>>, Expression<Func<BookEntity, bool>>>(predicate);
 
-            var mappedBook= Mapper.Map<BookEntity, Book>(_unitOfWork.BookRepository.First(mappedPredicate));
+            var mappedBook = Mapper.Map<BookEntity, Book>(_unitOfWork.BookRepository.First(mappedPredicate));
 
             return mappedBook;
         }
@@ -81,20 +83,24 @@ namespace Bookcase.BLL.Services.Realization
             return _unitOfWork.BookRepository.Count(mappedPredicate);
         }
 
-        public void Create(Book item)
+        public Book Create(Book item)
         {
             var mappedBook = Mapper.Map<Book, BookEntity>(item);
 
-            _unitOfWork.BookRepository.Create(mappedBook);
+            var createdBook = _unitOfWork.BookRepository.Create(mappedBook);
             _unitOfWork.Save();
+
+            return Mapper.Map<BookEntity, Book>(createdBook);
         }
 
-        public void Update(Book item)
+        public Book Update(Book item)
         {
             var mappedBook = Mapper.Map<Book, BookEntity>(item);
 
-            _unitOfWork.BookRepository.Update(mappedBook);
+            var updatedBook = _unitOfWork.BookRepository.Update(mappedBook);
             _unitOfWork.Save();
+
+            return Mapper.Map<BookEntity, Book>(updatedBook);
         }
 
         public void Delete(int id)

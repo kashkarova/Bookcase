@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Bookcase.BLL.DTO
+namespace Bookcase.BLL.DomainModels
 {
     public class Book
     {

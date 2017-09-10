@@ -59,19 +59,18 @@ namespace Bookcase.DAL.Repository.Implementations
             return _db.Set<TEntity>().Count(predicate);
         }
 
-        public void Create(TEntity item)
+        public TEntity Create(TEntity item)
         {
             _db.Set<TEntity>().Add(item);
+
+            return item;
         }
 
-        public void Update(TEntity item)
+        public TEntity Update(TEntity item)
         {
-            var itemForUpdate = _db.Set<TEntity>().Find(item);
-
-            if (itemForUpdate == null)
-                throw new NullReferenceException();
-
             _db.Entry(item).State = EntityState.Modified;
+
+            return item;
         }
 
         public void Delete(int id)
