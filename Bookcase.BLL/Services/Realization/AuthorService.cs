@@ -81,20 +81,24 @@ namespace Bookcase.BLL.Services.Realization
             return _unitOfWork.AuthorRepository.Count(mappedPredicate);
         }
 
-        public void Create(Author item)
+        public Author Create(Author item)
         {
             var mappedAuthor = Mapper.Map<Author, AuthorEntity>(item);
 
-            _unitOfWork.AuthorRepository.Create(mappedAuthor);
+            var createdAuthor = _unitOfWork.AuthorRepository.Create(mappedAuthor);
             _unitOfWork.Save();
+
+            return Mapper.Map<AuthorEntity, Author>(createdAuthor);
         }
 
-        public void Update(Author item)
+        public Author Update(Author item)
         {
             var mappedAuthor = Mapper.Map<Author, AuthorEntity>(item);
 
-            _unitOfWork.AuthorRepository.Update(mappedAuthor);
+            var updatedAuthor = _unitOfWork.AuthorRepository.Update(mappedAuthor);
             _unitOfWork.Save();
+
+            return Mapper.Map<AuthorEntity, Author>(updatedAuthor);
         }
 
         public void Delete(int id)

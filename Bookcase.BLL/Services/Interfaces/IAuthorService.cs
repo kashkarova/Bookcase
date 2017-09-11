@@ -19,8 +19,8 @@ namespace Bookcase.BLL.Services.Interfaces
         int Count();
         int Count(Expression<Func<Author, bool>> predicate);
 
-        void Create(Author item);
-        void Update(Author item);
+        Author Create(Author item);
+        Author Update(Author item);
         void Delete(int id);
     }
 }

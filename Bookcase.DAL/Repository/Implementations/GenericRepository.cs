@@ -26,12 +26,12 @@ namespace Bookcase.DAL.Repository.Implementations
 
         public List<TEntity> GetAll()
         {
-            return _db.Set<TEntity>().AsNoTracking().ToList();
+            return _db.Set<TEntity>().ToList();
         }
 
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
         {
-            return _db.Set<TEntity>().Where(predicate).AsNoTracking().ToList();
+            return _db.Set<TEntity>().Where(predicate).ToList();
         }
 
         public TEntity First(Expression<Func<TEntity, bool>> predicate)

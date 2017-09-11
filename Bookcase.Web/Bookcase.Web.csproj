@@ -177,10 +177,22 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Authors\pushkin.jpg" />
+    <Content Include="Content\Authors\tolstoy_lev.jpg" />
+    <Content Include="Content\Authors\lermontov.jpg" />
+    <Content Include="Content\Authors\yesenin.jpg" />
+    <Content Include="Content\Authors\asadov.jpg" />
+    <Content Include="Content\Authors\mayakovskyi.jpg" />
+    <Content Include="Content\Authors\brodsky.jpg" />
+    <Content Include="Content\Authors\bulgakov.jpg" />
+    <Content Include="Content\Authors\chekhov.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Authors\dostoevsky.jpg" />
+    <Content Include="Content\Authors\duma_father.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Authors\franko.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
@@ -190,6 +202,10 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Authors\hemingway.jpg" />
+    <Content Include="Content\Authors\hohol.jpg" />
+    <Content Include="Content\Authors\hugo.jpg" />
+    <Content Include="Content\Authors\kafka.jpeg" />
     <Content Include="KendoUI\js\jquery.min.map" />
     <Content Include="KendoUI\js\kendo.all.min.js.map" />
     <Content Include="KendoUI\js\kendo.angular.min.js.map" />
@@ -361,6 +377,7 @@
     <Content Include="KendoUI\styles\kendo.default-v2.min.css" />
     <Content Include="KendoUI\styles\kendo.default.min.css" />
     <Content Include="KendoUI\styles\kendo.default.mobile.min.css" />
+    <Content Include="Content\Authors\po.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -377,6 +394,9 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Content\Authors\tsvetaieva.jpg" />
+    <Content Include="Content\Authors\twain.jpg" />
+    <Content Include="Content\Authors\vern.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -395,8 +415,10 @@
     <Content Include="Views\Book\Create.cshtml" />
     <Content Include="Views\Book\Edit.cshtml" />
     <Content Include="Views\Book\Delete.cshtml" />
-    <Content Include="Views\Book\Details.cshtml" />
     <Content Include="Views\Author\Index.cshtml" />
+    <Content Include="Views\Author\Create.cshtml" />
+    <Content Include="Views\Author\Edit.cshtml" />
+    <Content Include="Views\Author\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

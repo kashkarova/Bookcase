@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
 using Bookcase.BLL.DomainModels;
@@ -23,6 +20,7 @@ namespace Bookcase.Web.Controllers
         public ActionResult Index()
         {
             var mappedAuthors = Mapper.Map<List<Author>, List<AuthorViewModel>>(_authorService.GetAll());
+
             return View(mappedAuthors);
         }
 
@@ -40,62 +38,53 @@ namespace Bookcase.Web.Controllers
 
         // POST: Author/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(AuthorViewModel author)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            var mapCreatedAuthor = Mapper.Map<AuthorViewModel, Author>(author);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            _authorService.Create(mapCreatedAuthor);
+
+            return RedirectToAction("Index");
         }
 
         // GET: Author/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+                return HttpNotFound();
+
+            var editAuthor = Mapper.Map<Author, AuthorViewModel>(_authorService.Get(id.Value));
+            return View(editAuthor);
         }
 
         // POST: Author/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(AuthorViewModel author)
         {
-            try
-            {
-                // TODO: Add update logic here
+            var mapEditedAuthor = Mapper.Map<AuthorViewModel, Author>(author);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            _authorService.Update(mapEditedAuthor);
+            return RedirectToAction("Index");
         }
 
         // GET: Author/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+                return HttpNotFound();
+
+            var deletedAuthor = Mapper.Map<Author, AuthorViewModel>(_authorService.Get(id.Value));
+
+            return View(deletedAuthor);
         }
 
         // POST: Author/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(AuthorViewModel author)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var mapDeletedAuthor = Mapper.Map<AuthorViewModel, Author>(author);
+            _authorService.Delete(mapDeletedAuthor.Id);
+            return RedirectToAction("Index");
         }
     }
 }
