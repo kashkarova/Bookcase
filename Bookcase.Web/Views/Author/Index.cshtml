@@ -1,67 +1,15 @@
-﻿@model IEnumerable<Bookcase.ViewModel.AuthorViewModel>
+﻿@using Kendo.Mvc.UI
+@model IEnumerable<Bookcase.ViewModel.AuthorViewModel>
 
-
-<link href="~/KendoUI/styles/kendo.common.min.css" rel="stylesheet"/>
-<link href="~/KendoUI/styles/kendo.default.min.css" rel="stylesheet"/>
-<link href="~/KendoUI/styles/kendo.default.mobile.min.css" rel="stylesheet"/>
-
+<link href="~/KendoUI/styles/kendo.common.min.css" rel="stylesheet" />
+<link href="~/KendoUI/styles/kendo.default.min.css" rel="stylesheet" />
+<link href="~/KendoUI/styles/kendo.default.mobile.min.css" rel="stylesheet" />
 <script src="~/KendoUI/js/jquery.min.js"></script>
 <script src="~/KendoUI/js/kendo.all.min.js"></script>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-
-<div id="grid">
-
-</div>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Photo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateOfBirth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td >
-                <img src="~/Content/Authors/@Html.DisplayFor(modelItem => item.Photo)"
-                     alt="trololo" class="customer-photo"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfBirth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.Id})
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new {id = item.Id})
-            </td>
-            <td>
-                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
-            </td>
-        </tr>
-    }
-
-</table>
+<div id="grid"></div>
 
 
 <style type="text/css">
@@ -87,27 +35,25 @@
     }
 </style>
 
-<script>
-    $(document).ready(function() {
-        $("#grid").kendoGrid({
-            dataSource: {
-                pageSize: 20
-            },
-            height: 400,
-            pageSize: 10,
-            sortable: true,
-            groupable: true,
-            pageable: {
-                refresh: true,
-                pageSizes: true,
-                buttonCount: 5
-            },
-            toolbar: ["create"],
-            columns: [
-                { command: ["edit", "details", "destroy"], title: "&nbsp;", width: "50px" }
-            ],
-            editable: "popup"
-        });
-    });
-
-</script>
+    @(Html.Kendo().Grid(Model)
+          .Name("grid")
+          .Columns(columns =>
+          {
+              columns.Bound(p => p.Id).Filterable(false);
+              columns.Bound(p => p.Name);
+              columns.Bound(p => p.DateOfBirth).Format("{0:MM/dd/yyyy}");
+              columns.Bound(p => p.Country);
+              columns.Bound(p => p.Photo).ClientTemplate(
+                  @"<img src='~/Сontent/Authors/#:Photo#' class='customer-photo' alt='pic'");
+          })
+          .Pageable()
+          .Sortable()
+          .Scrollable()
+          .Filterable()
+          .HtmlAttributes(new { style = "height:550px;" })
+          .DataSource(dataSource => dataSource
+              .Ajax()
+              .PageSize(5)
+              .Read(read => read.Action("Index", "Author"))
+          )
+          )
