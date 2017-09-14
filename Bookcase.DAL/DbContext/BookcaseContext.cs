@@ -13,5 +13,6 @@ namespace Bookcase.DAL.DbContext
 
         public DbSet<BookEntity> Book { get; set; }
         public DbSet<AuthorEntity> Author { get; set; }
+
     }
 }
