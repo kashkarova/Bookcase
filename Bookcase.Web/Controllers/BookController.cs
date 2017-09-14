@@ -30,13 +30,14 @@ namespace Bookcase.Web.Controllers
         }
 
         // GET: Book/Create
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Book/Create
-        [HttpPost]
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(BookViewModel book)
         {
             var mapCreatedBook = Mapper.Map<BookViewModel, Book>(book);
@@ -46,6 +47,7 @@ namespace Bookcase.Web.Controllers
         }
 
         // GET: Book/Edit/5
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -56,7 +58,7 @@ namespace Bookcase.Web.Controllers
         }
 
         // POST: Book/Edit/5
-        [HttpPost]
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(BookViewModel book)
         {
             var mapEditedBook = Mapper.Map<BookViewModel, Book>(book);
@@ -66,6 +68,7 @@ namespace Bookcase.Web.Controllers
         }
 
         // GET: Book/Delete/5
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -77,7 +80,7 @@ namespace Bookcase.Web.Controllers
         }
 
         // POST: Book/Delete/5
-        [HttpPost]
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Delete(BookViewModel book)
         {
             var mapDeletedBook = Mapper.Map<BookViewModel, Book>(book);

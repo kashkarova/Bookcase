@@ -1,15 +1,8 @@
 ﻿@model IEnumerable<Bookcase.ViewModel.BookViewModel>
 
-
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>Index</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-
 <table id="grid">
     <tr>
         <th>
@@ -25,6 +18,7 @@
         <th></th>
         <th></th>
     </tr>
+
     @foreach (var item in Model)
     {
         <tr>
@@ -50,6 +44,15 @@
     }
 </table>
 
+<style type="text/css">
+    .customer-name {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 32px;
+        padding-left: 3px;
+    }
+</style>
+
 <script>
     $(document).ready(function () {
         $("#grid").kendoGrid({
@@ -66,7 +69,7 @@
                 width: 100
             },
             {
-                field: "Publishing house",
+                field: "PublishingHouse",
                 width: 60
             },
             {
@@ -88,3 +91,4 @@
         });
     });
 </script>
+
