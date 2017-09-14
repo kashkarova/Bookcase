@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using Bookcase.BLL.DomainModels;
 using Bookcase.BLL.Services.Interfaces;
 using Bookcase.ViewModel;
-using Kendo.Mvc.UI;
-using Kendo.Mvc.Extensions;
 
 namespace Bookcase.Web.Controllers
 {
@@ -26,31 +23,16 @@ namespace Bookcase.Web.Controllers
             return View(mappedAuthors);
         }
 
-        public ActionResult Search(string wildcard)
-        {
-            var authors = _authorService.GetAll();
-            var result = new List<string>();
-
-            foreach (var author in authors)
-            {
-                result.Add(author.Name);
-            }
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
-
-        public JsonResult GetData()
-        {
-            var mappedAuthors = Mapper.Map<List<Author>, List<AuthorViewModel>>(_authorService.GetAll());
-            return Json(mappedAuthors, JsonRequestBehavior.AllowGet);
-        }
-
         // GET: Author/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var unmappedAuthor = _authorService.Get(id);
+
+            var mappedAuthor = Mapper.Map<Author, AuthorViewModel>(unmappedAuthor);
+
+            return View(mappedAuthor);
         }
-        
+
 
         // GET: Author/Create
         [AcceptVerbs(HttpVerbs.Get)]
@@ -58,7 +40,7 @@ namespace Bookcase.Web.Controllers
         {
             return View();
         }
-        
+
         // POST: Author/Create
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(AuthorViewModel author)

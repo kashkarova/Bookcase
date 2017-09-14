@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Bookcase.ViewModel.AuthorViewModel>
 
+<script src="~/Scripts/DomainScripts/Author.js"></script>
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -25,7 +27,7 @@
     {
         <tr>
             <td>
-                <img src="~/Content/Authors/@item.Photo" class="customer-photo" alt="" />
+                <img src="~/Content/Authors/@item.Photo" class="customer-photo" alt=""/>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
@@ -35,77 +37,15 @@
                 @Html.DisplayFor(modelItem => item.Country)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                @Html.ActionLink("Edit", "Edit", new {id = item.Id})
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                @Html.ActionLink("Details", "Details", new {id = item.Id})
             </td>
             <td>
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
             </td>
         </tr>
     }
 
 </table>
-
-<style type="text/css">
-    .customer-photo {
-        display: inline-block;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background-size: 32px 35px;
-        background-position: center center;
-        vertical-align: middle;
-        line-height: 32px;
-        box-shadow: inset 0 0 1px #999, inset 0 0 10px #000000;
-        box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
-        margin-left: 5px;
-    }
-
-    .customer-name {
-        display: inline-block;
-        vertical-align: middle;
-        line-height: 32px;
-        padding-left: 3px;
-    }
-</style>
-
-<script>
-    $(document).ready(function () {
-        $("#grid").kendoGrid({
-            height: 550,
-            groupable: true,
-            sortable: true,
-            pageable: {
-                refresh: true,
-                pageSizes: true,
-                buttonCount: 5
-            },
-            columns: [{
-                    field: "Name",
-                    width:100
-                },
-                {
-                    field: "DateOfBirth",
-                    width:60
-                },
-                {
-                    field: "Country",
-                    width:50
-                },
-                {
-                    field: "Edit",
-                    width:30
-                },
-                {
-                    field: "Details",
-                    width: 40
-                },
-                {
-                    field: "Delete",
-                    width: 40
-                }]
-        });
-    });
-</script>

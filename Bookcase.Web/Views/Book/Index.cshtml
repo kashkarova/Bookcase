@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Bookcase.ViewModel.BookViewModel>
 
+<script src="~/Scripts/DomainScripts/Book.js"></script>
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -32,63 +34,14 @@
                 @Html.DisplayFor(modelItem => item.Year)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                @Html.ActionLink("Edit", "Edit", new {id = item.Id})
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                @Html.ActionLink("Details", "Details", new {id = item.Id})
             </td>
             <td>
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
             </td>
         </tr>
     }
 </table>
-
-<style type="text/css">
-    .customer-name {
-        display: inline-block;
-        vertical-align: middle;
-        line-height: 32px;
-        padding-left: 3px;
-    }
-</style>
-
-<script>
-    $(document).ready(function () {
-        $("#grid").kendoGrid({
-            height: 550,
-            groupable: true,
-            sortable: true,
-            pageable: {
-                refresh: true,
-                pageSizes: true,
-                buttonCount: 5
-            },
-            columns: [{
-                field: "Title",
-                width: 100
-            },
-            {
-                field: "PublishingHouse",
-                width: 60
-            },
-            {
-                field: "Year",
-                width: 50
-            },
-            {
-                field: "Edit",
-                width: 30
-            },
-            {
-                field: "Details",
-                width: 40
-            },
-            {
-                field: "Delete",
-                width: 40
-            }]
-        });
-    });
-</script>
-
