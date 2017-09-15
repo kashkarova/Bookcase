@@ -30,19 +30,18 @@ namespace Bookcase.Web.Controllers
 
             var mappedAuthor = Mapper.Map<Author, AuthorViewModel>(unmappedAuthor);
 
-            return View(mappedAuthor);
+            return PartialView(mappedAuthor);
         }
 
 
         // GET: Author/Create
-        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Create()
         {
-            return View();
+            return PartialView("Create");
         }
 
         // POST: Author/Create
-        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
         public ActionResult Create(AuthorViewModel author)
         {
             var mapCreatedAuthor = Mapper.Map<AuthorViewModel, Author>(author);
@@ -53,18 +52,17 @@ namespace Bookcase.Web.Controllers
         }
 
         // GET: Author/Edit/5
-        [HttpGet]
         public ActionResult Edit(int? id)
         {
             if (id == null)
                 return HttpNotFound();
 
             var editAuthor = Mapper.Map<Author, AuthorViewModel>(_authorService.Get(id.Value));
-            return View(editAuthor);
+            return PartialView(editAuthor);
         }
 
         // POST: Author/Edit/5
-        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
         public ActionResult Edit(AuthorViewModel author)
         {
             var mapEditedAuthor = Mapper.Map<AuthorViewModel, Author>(author);
@@ -75,7 +73,6 @@ namespace Bookcase.Web.Controllers
         }
 
         // GET: Author/Delete/5
-        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -83,11 +80,11 @@ namespace Bookcase.Web.Controllers
 
             var deletedAuthor = Mapper.Map<Author, AuthorViewModel>(_authorService.Get(id.Value));
 
-            return View(deletedAuthor);
+            return PartialView(deletedAuthor);
         }
 
         // POST: Author/Delete/5
-        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
         public ActionResult Delete(AuthorViewModel author)
         {
             var mapDeletedAuthor = Mapper.Map<AuthorViewModel, Author>(author);

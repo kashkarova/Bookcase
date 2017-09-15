@@ -20,7 +20,7 @@ namespace Bookcase.ViewModel
         [Required]
         [DisplayName("Year of publishing")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Year { get; set; }
 
         public virtual List<AuthorViewModel> Authors { get; set; }

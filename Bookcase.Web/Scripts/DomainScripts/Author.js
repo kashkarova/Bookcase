@@ -1,6 +1,7 @@
 ﻿$(document).ready(function() {
     $("#grid").kendoGrid({
-        height: 550,
+        height: 400,
+        serverOperation:false,
         groupable: true,
         sortable: true,
         pageable: {
@@ -36,3 +37,4 @@
         ]
     });
 });
+

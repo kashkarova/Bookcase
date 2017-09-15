@@ -201,6 +201,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Authors\kafka.jpg" />
     <Content Include="Content\Authors\pushkin.jpg" />
     <Content Include="Content\Authors\tolstoy_lev.jpg" />
     <Content Include="Content\Authors\lermontov.jpg" />
@@ -229,7 +230,6 @@
     <Content Include="Content\Authors\hemingway.jpg" />
     <Content Include="Content\Authors\hohol.jpg" />
     <Content Include="Content\Authors\hugo.jpg" />
-    <Content Include="Content\Authors\kafka.jpeg" />
     <Content Include="KendoUI\js\jquery.min.map" />
     <Content Include="KendoUI\js\kendo.all.min.js.map" />
     <Content Include="KendoUI\js\kendo.angular.min.js.map" />
@@ -423,7 +423,9 @@
     <Content Include="Content\Authors\tsvetaieva.jpg" />
     <Content Include="Content\Authors\twain.jpg" />
     <Content Include="Content\Authors\vern.jpg" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -446,6 +448,7 @@
     <Content Include="Views\Author\Index.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Author\Details.cshtml" />
+    <Content Include="Views\Book\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
