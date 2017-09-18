@@ -1,36 +1,22 @@
 ﻿@model Bookcase.ViewModel.BookViewModel
+<div class="modal-header">
+    <h4 class="modal-title">Details</h4>
+</div>
 
-<div>
-    <h4>BookViewModel</h4>
-    <hr />
+<div class="modal-body">
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Title)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PublishingHouse)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.PublishingHouse)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Year)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Year)
         </dd>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="modal-footer">
+    @Html.ActionLink("OK", "Index", null, new { @class = "btn btn-default", type = "button" })
+</div>

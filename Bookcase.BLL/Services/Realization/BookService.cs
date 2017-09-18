@@ -120,6 +120,7 @@ namespace Bookcase.BLL.Services.Realization
         public void DeleteAuthorFromBook(int bookId, int authorId)
         {
             var book = _unitOfWork.BookRepository.Get(bookId);
+
             var author = _unitOfWork.AuthorRepository.Get(authorId);
 
             book.Authors.Remove(author);

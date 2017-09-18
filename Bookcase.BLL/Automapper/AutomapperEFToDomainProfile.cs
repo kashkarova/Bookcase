@@ -8,9 +8,11 @@ namespace Bookcase.BLL.Automapper
     {
         public AutomapperEFToDomainProfile()
         {
-            CreateMap<BookEntity, Book>().ReverseMap();
+            CreateMap<BookEntity, Book>()
+                .ReverseMap();
 
-            CreateMap<AuthorEntity, Author>().ReverseMap();
+            CreateMap<AuthorEntity, Author>()
+                .ReverseMap();
         }
     }
 }

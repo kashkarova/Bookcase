@@ -4,14 +4,14 @@ using Bookcase.ViewModel;
 
 namespace Bookcase.Web.Automapper
 {
-    public class AutomapperViewModelToDomainProfile : Profile
+    public class AutomapperDomainToViewModelProfile : Profile
     {
-        public AutomapperViewModelToDomainProfile()
+        public AutomapperDomainToViewModelProfile()
         {
-            CreateMap<BookViewModel, Book>()
+            CreateMap<Book, BookViewModel>()
                 .ReverseMap();
 
-            CreateMap<AuthorViewModel, Author>()
+            CreateMap<Author, AuthorViewModel>()
                 .ReverseMap();
         }
     }

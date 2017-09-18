@@ -106,5 +106,6 @@ namespace Bookcase.BLL.Services.Realization
             _unitOfWork.AuthorRepository.Delete(id);
             _unitOfWork.Save();
         }
+
     }
 }

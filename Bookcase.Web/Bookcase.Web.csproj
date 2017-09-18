@@ -89,11 +89,11 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    <Reference Include="Microsoft.Data.Edm, Version=5.8.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.8.3\lib\net40\Microsoft.Data.Edm.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    <Reference Include="Microsoft.Data.OData, Version=5.8.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.8.3\lib\net40\Microsoft.Data.OData.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -116,8 +116,8 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+    <Reference Include="System.Spatial, Version=5.8.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.8.3\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -128,8 +128,8 @@
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http.OData, Version=5.3.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.3.1\lib\net45\System.Web.Http.OData.dll</HintPath>
+    <Reference Include="System.Web.Http.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.7.0\lib\net45\System.Web.Http.OData.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
@@ -186,12 +186,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\App_Start\BundleConfig.cs" />
-    <Compile Include="Views\App_Start\FilterConfig.cs" />
-    <Compile Include="Views\App_Start\NinjectWebCommon.cs" />
-    <Compile Include="Views\App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Automapper\AutomapperInitializer.cs" />
-    <Compile Include="Automapper\AutomapperViewModelToDomainProfile.cs" />
+    <Compile Include="Automapper\AutomapperDomainToViewModelProfile.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -305,6 +305,11 @@
     <Content Include="KendoUI\js\kendo.virtuallist.min.js.map" />
     <Content Include="KendoUI\js\kendo.web.min.js.map" />
     <Content Include="KendoUI\js\kendo.window.min.js.map" />
+    <Content Include="KendoUI\styles\fonts\glyphs\KendoUIGlyphs.svg" />
+    <Content Include="KendoUI\styles\images\back.png" />
+    <Content Include="KendoUI\styles\images\kendoui.svg" />
+    <Content Include="KendoUI\styles\images\wp8_icons.png" />
+    <Content Include="KendoUI\styles\images\wp8_inverseicons.png" />
     <Content Include="KendoUI\styles\kendo.bootstrap-v4.min.css.map" />
     <Content Include="KendoUI\styles\kendo.bootstrap.min.css.map" />
     <Content Include="KendoUI\styles\kendo.bootstrap.mobile.min.css.map" />
@@ -313,6 +318,13 @@
     <Content Include="KendoUI\styles\kendo.default-v2.min.css.map" />
     <Content Include="KendoUI\styles\kendo.default.min.css.map" />
     <Content Include="KendoUI\styles\kendo.default.mobile.min.css.map" />
+    <Content Include="KendoUI\styles\images\kendoui.ttf" />
+    <Content Include="KendoUI\styles\images\kendoui.woff" />
+    <Content Include="KendoUI\styles\fonts\glyphs\KendoUIGlyphs.eot" />
+    <Content Include="KendoUI\styles\fonts\glyphs\KendoUIGlyphs.ttf" />
+    <Content Include="KendoUI\styles\fonts\glyphs\KendoUIGlyphs.woff" />
+    <Content Include="KendoUI\styles\fonts\glyphs\WebComponentsIcons.ttf" />
+    <Content Include="KendoUI\styles\fonts\glyphs\WebComponentsIcons.woff" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="KendoUI\js\angular.min.js" />
     <Content Include="KendoUI\js\jquery.min.js" />
@@ -406,10 +418,13 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\DomainScripts\Author.js" />
     <Content Include="Scripts\DomainScripts\Book.js" />
-    <Content Include="Scripts\jquery-3.1.1.js" />
-    <Content Include="Scripts\jquery-3.1.1.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -452,13 +467,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="App_Start\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bookcase.BLL\Bookcase.BLL.csproj">
