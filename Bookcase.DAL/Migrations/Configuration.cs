@@ -14,8 +14,9 @@ namespace Bookcase.DAL.Migrations
 
         protected override void Seed(BookcaseContext context)
         {
+            /*
             context.Author.AddOrUpdate(
-                a => a.Name,
+                a => a.Id,
                 new AuthorEntity
                 {
                     Name = "А.С. Пушкин",
@@ -62,7 +63,7 @@ namespace Bookcase.DAL.Migrations
 
 
             context.Book.AddOrUpdate(
-                b => b.Title,
+                b => b.Id,
                 new BookEntity
                 {
                     Title = "Война и мир. Том 1.",
@@ -92,6 +93,7 @@ namespace Bookcase.DAL.Migrations
             );
 
             context.SaveChanges();
+            */
         }
     }
 }

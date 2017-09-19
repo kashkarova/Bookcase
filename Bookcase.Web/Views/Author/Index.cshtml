@@ -3,7 +3,7 @@
 <script src="~/Scripts/DomainScripts/Author.js"></script>
 <br />
 <p>
-    @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-default", data_toggle = "modal", data_target = "#myModal", type = "button" })
+    @Ajax.ActionLink("Create", "Create", null, new AjaxOptions{UpdateTargetId = "myDialog", InsertionMode = InsertionMode.Replace}, new { @class = "btn btn-default", data_toggle = "modal", data_target = "#myModal", type = "button" })
 </p>
 
 
@@ -37,14 +37,14 @@
                 @Html.DisplayFor(modelItem => item.Country)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", null, new { id = item.Id }, new { @class = "btn btn-primary", data_toggle = "modal", data_target = "#myModal", type = "button" })
+                @Ajax.ActionLink("Edit", "Edit", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "myDialog", InsertionMode = InsertionMode.Replace, AllowCache = false, HttpMethod = "GET"},  new { @class = "btn btn-primary", data_toggle = "modal", data_target = "#myModal", type = "button" })
             </td>
 
             <td>
-                @Html.ActionLink("Details", "Details", null, new { id = item.Id }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#myModal", type = "button" })
+                @Ajax.ActionLink("Details", "Details", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "myDialog", InsertionMode = InsertionMode.Replace, AllowCache = false, HttpMethod = "GET" }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#myModal", type = "button" })
             </td>
             <td>
-                @Html.ActionLink("Delete", "Delete", null, new { id = item.Id }, new { @class = "btn btn-warning", data_toggle = "modal", data_target = "#myModal", type = "button" })
+                @Ajax.ActionLink("Delete", "Delete", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "myDialog", InsertionMode = InsertionMode.Replace, AllowCache = false, HttpMethod = "POST" }, new { @class = "btn btn-warning", data_toggle = "modal", data_target = "#myModal", type = "button" })
             </td>
         </tr>
     }
