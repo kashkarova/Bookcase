@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<Bookcase.ViewModel.AuthorViewModel>
 
 <script src="~/Scripts/DomainScripts/Author.js"></script>
-<br/>
+<br />
 <p>
-    @Html.ActionLink("Create", "Create", null, new { @class= "btn btn-default", data_toggle = "modal", data_target = "#myModal", type="button" })
-
+    @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-default", data_toggle = "modal", data_target = "#myModal", type = "button" })
 </p>
+
 
 <table id="grid">
     <tr>
@@ -27,7 +27,7 @@
     {
         <tr>
             <td>
-                <img src="~/Content/Authors/@item.Photo" class="customer-photo" alt=""/>
+                <img src="~/Content/Authors/@item.Photo" class="customer-photo" alt="" />
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
@@ -37,13 +37,14 @@
                 @Html.DisplayFor(modelItem => item.Country)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", null, new {id = item.Id}, new { @class = "btn btn-primary", data_toggle = "modal", data_target = "#myModal", type = "button" })
+                @Html.ActionLink("Edit", "Edit", null, new { id = item.Id }, new { @class = "btn btn-primary", data_toggle = "modal", data_target = "#myModal", type = "button" })
+            </td>
+
+            <td>
+                @Html.ActionLink("Details", "Details", null, new { id = item.Id }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#myModal", type = "button" })
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", null, new {id = item.Id}, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#myModal", type = "button" })
-            </td>
-            <td>
-                @Html.ActionLink("Delete", "Delete", null, new {id = item.Id}, new { @class = "btn btn-warning", data_toggle = "modal", data_target = "#myModal", type = "button" })
+                @Html.ActionLink("Delete", "Delete", null, new { id = item.Id }, new { @class = "btn btn-warning", data_toggle = "modal", data_target = "#myModal", type = "button" })
             </td>
         </tr>
     }
@@ -52,7 +53,8 @@
 
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div id="myDialog" class="modal-content">
+
         </div>
     </div>
 </div>
