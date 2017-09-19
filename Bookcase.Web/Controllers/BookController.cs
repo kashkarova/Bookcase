@@ -119,8 +119,8 @@ namespace Bookcase.Web.Controllers
 
         public ActionResult DeleteAuthorFromBook(int bookId, int authorId)
         {
-            var book = _bookService.Get(bookId);
-            var mappedBook = Mapper.Map<Book, BookViewModel>(book);
+            var getBook = _bookService.Get(bookId);
+            var mappedBook = Mapper.Map<Book, BookViewModel>(getBook);
 
             var author = _authorService.Get(authorId);
             var mappedAuthor = Mapper.Map<Author, AuthorViewModel>(author);

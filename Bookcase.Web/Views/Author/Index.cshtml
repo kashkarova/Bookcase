@@ -44,7 +44,7 @@
                 @Ajax.ActionLink("Details", "Details", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "myDialog", InsertionMode = InsertionMode.Replace, AllowCache = false, HttpMethod = "GET" }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#myModal", type = "button" })
             </td>
             <td>
-                @Ajax.ActionLink("Delete", "Delete", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "myDialog", InsertionMode = InsertionMode.Replace, AllowCache = false, HttpMethod = "POST" }, new { @class = "btn btn-warning", data_toggle = "modal", data_target = "#myModal", type = "button" })
+                @Ajax.ActionLink("Delete", "Delete", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "myDialog", InsertionMode = InsertionMode.Replace, AllowCache = false, HttpMethod = "GET" }, new { @class = "btn btn-warning", data_toggle = "modal", data_target = "#myModal", type = "button" })
             </td>
         </tr>
     }

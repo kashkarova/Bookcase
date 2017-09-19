@@ -6,6 +6,7 @@
     @Html.AntiForgeryToken()
 
     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Create book</h4>
     </div>
     <div class="modal-body form-horizontal">
@@ -52,15 +53,8 @@
             });
         </script>
 
-
-
     </div>
     <div class="modal-footer">
         <input type="submit" value="Create" class="btn btn-success" />
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }

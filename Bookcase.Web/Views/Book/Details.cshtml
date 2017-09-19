@@ -1,8 +1,9 @@
 ﻿@model Bookcase.ViewModel.BookViewModel
+
 <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h4 class="modal-title">Details</h4>
 </div>
-
 <div class="modal-body">
     <dl class="dl-horizontal">
         <dd>
@@ -14,9 +15,18 @@
         <dd>
             @Html.DisplayFor(model => model.Year)
         </dd>
-
     </dl>
+    <table>
+        @foreach (var item in Model.Authors)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.DateOfBirth</td>
+                <td>@item.Country</td>
+            </tr>
+        }
+    </table>
 </div>
 <div class="modal-footer">
-    @Html.ActionLink("OK", "Index", null, new { @class = "btn btn-default", type = "button" })
+    <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
 </div>
