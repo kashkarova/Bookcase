@@ -107,5 +107,37 @@ namespace Bookcase.BLL.Services.Realization
             _unitOfWork.Save();
         }
 
+
+        public void AddBookToAuthor(int bookId, int authorId)
+        {
+            var book = _unitOfWork.BookRepository.Get(bookId);
+            var author = _unitOfWork.AuthorRepository.Get(authorId);
+
+            var mappedBook = Mapper.Map<BookEntity, Book>(book);
+            var mappedAuthor = Mapper.Map<AuthorEntity, Author>(author);
+
+            mappedAuthor.Books.Add(mappedBook);
+
+            var unmappedAuthor = Mapper.Map<Author, AuthorEntity>(mappedAuthor);
+
+            _unitOfWork.AuthorRepository.Update(unmappedAuthor);
+            _unitOfWork.Save();
+        }
+
+        public void DeleteBookFromAuthor(int bookId, int authorId)
+        {
+            var book = _unitOfWork.BookRepository.Get(bookId);
+            var author = _unitOfWork.AuthorRepository.Get(authorId);
+
+            var mappedBook = Mapper.Map<BookEntity, Book>(book);
+            var mappedAuthor = Mapper.Map<AuthorEntity, Author>(author);
+
+            mappedAuthor.Books.Remove(mappedBook);
+
+            var unmappedAuthor = Mapper.Map<Author, AuthorEntity>(mappedAuthor);
+
+            _unitOfWork.AuthorRepository.Update(unmappedAuthor);
+            _unitOfWork.Save();
+        }
     }
 }

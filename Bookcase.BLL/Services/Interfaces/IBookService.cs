@@ -23,7 +23,6 @@ namespace Bookcase.BLL.Services.Interfaces
         Book Update(Book item);
         void Delete(int id);
 
-        void AddAuthorToBook(int bookId, int authorId);
-        void DeleteAuthorFromBook(int bookId, int authorId);
+        
     }
 }

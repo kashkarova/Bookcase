@@ -1,7 +1,5 @@
-﻿using System;
-using System.Data.Entity.Migrations;
+﻿using System.Data.Entity.Migrations;
 using Bookcase.DAL.DbContext;
-using Bookcase.DAL.DbEntities;
 
 namespace Bookcase.DAL.Migrations
 {

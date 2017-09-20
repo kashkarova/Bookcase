@@ -108,23 +108,5 @@ namespace Bookcase.BLL.Services.Realization
             _unitOfWork.Save();
         }
 
-        public void AddAuthorToBook(int bookId, int authorId)
-        {
-            var book = _unitOfWork.BookRepository.Get(bookId);
-            var author = _unitOfWork.AuthorRepository.Get(authorId);
-
-            book.Authors.Add(author);
-            _unitOfWork.Save();
-        }
-
-        public void DeleteAuthorFromBook(int bookId, int authorId)
-        {
-            var book = _unitOfWork.BookRepository.Get(bookId);
-
-            var author = _unitOfWork.AuthorRepository.Get(authorId);
-
-            book.Authors.Remove(author);
-            _unitOfWork.Save();
-        }
     }
 }

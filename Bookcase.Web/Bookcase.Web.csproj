@@ -325,7 +325,6 @@
     <Content Include="KendoUI\styles\fonts\glyphs\KendoUIGlyphs.woff" />
     <Content Include="KendoUI\styles\fonts\glyphs\WebComponentsIcons.ttf" />
     <Content Include="KendoUI\styles\fonts\glyphs\WebComponentsIcons.woff" />
-    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="KendoUI\js\angular.min.js" />
     <Content Include="KendoUI\js\jquery.min.js" />
     <Content Include="KendoUI\js\jszip.min.js" />
@@ -457,15 +456,13 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Book\Create.cshtml" />
-    <Content Include="Views\Book\Edit.cshtml" />
-    <Content Include="Views\Book\Delete.cshtml" />
     <Content Include="Views\Author\Create.cshtml" />
     <Content Include="Views\Author\Edit.cshtml" />
-    <Content Include="Views\Author\Delete.cshtml" />
     <Content Include="Views\Author\Index.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Author\Details.cshtml" />
     <Content Include="Views\Book\Details.cshtml" />
+    <Content Include="Views\Book\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

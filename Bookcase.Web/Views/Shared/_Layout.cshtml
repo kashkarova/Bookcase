@@ -3,20 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    
     @Styles.Render("~/bundles/css/kendo")
     @Styles.Render("~/bundles/css/bootstrap")
     @Styles.Render("~/bundles/css/site")
-
-
     @Scripts.Render("~/bundles/js/jquery")
     @Scripts.Render("~/bundles/js/jqueryval")
     @Scripts.Render("~/bundles/js/modernizr")
     @Scripts.Render("~/bundles/js/bootstrap")
-    @Scripts.Render("~/bundles/js/kendo")    
-
+    @Scripts.Render("~/bundles/js/kendo")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -45,7 +40,5 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-
-    @RenderSection("scripts", false)
 </body>
 </html>

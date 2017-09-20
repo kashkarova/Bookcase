@@ -12,10 +12,7 @@ namespace Bookcase.Web.Automapper
                 cfg.AddProfile<AutomapperEFToDomainProfile>();
                 cfg.AddProfile<AutomapperDomainToViewModelProfile>();
 
-                cfg.ForAllMaps((mapType, mapperExpression) =>
-                {
-                    mapperExpression.MaxDepth(1);
-                });
+                cfg.ForAllMaps((mapType, mapperExpression) => { mapperExpression.MaxDepth(1); });
             });
 
             Mapper.Configuration.AssertConfigurationIsValid();

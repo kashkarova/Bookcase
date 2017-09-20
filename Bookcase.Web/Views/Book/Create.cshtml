@@ -1,6 +1,5 @@
 ﻿@using Kendo.Mvc.UI
 @model Bookcase.ViewModel.BookViewModel
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -33,26 +32,6 @@
                 @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="k-content">
-            <h4>Find an author</h4>
-            <input id="authors" style="width: 100%;" />
-        </div>
-        <script>
-            $("#authors").kendoAutoComplete({
-                dataTextField: "Name",
-                filter: "contains",
-                minLength: 3,
-                dataSource: {
-                    type: "json",
-                    serverFiltering: true,
-                    transport: {
-                        read: "../Book/GetAllAuthors"
-                    }
-                }
-            });
-        </script>
-
     </div>
     <div class="modal-footer">
         <input type="submit" value="Create" class="btn btn-success" />

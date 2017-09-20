@@ -22,5 +22,8 @@ namespace Bookcase.BLL.Services.Interfaces
         Author Create(Author item);
         Author Update(Author item);
         void Delete(int id);
+
+        void AddBookToAuthor(int bookId, int authorId);
+        void DeleteBookFromAuthor(int bookId, int authorId);
     }
 }

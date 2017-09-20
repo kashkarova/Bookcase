@@ -4,12 +4,10 @@ namespace Bookcase.Web
 {
     public class BundleConfig
     {
-        // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/js/jquery").Include(
                 "~/Scripts/jquery-{version}.js",
-                "~/Scripts/jquery-3.1.1.intellisense.js",
                 "~/Scripts/jquery.unobtrusive-ajax.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/js/jqueryval").Include(
@@ -27,8 +25,9 @@ namespace Bookcase.Web
 
             bundles.Add(new ScriptBundle("~/bundles/js/kendo").Include(
                 "~/KendoUI/js/kendo.all.min.js",
-                "~/KendoUI/js/kendo.web.min.js"
-                ));
+                "~/KendoUI/js/kendo.web.min.js",
+                "~/KendoUI/js/kendo.autocomplete.min.js"
+            ));
 
             bundles.Add(new StyleBundle("~/bundles/css/bootstrap").Include(
                 "~/Content/bootstrap.css"));

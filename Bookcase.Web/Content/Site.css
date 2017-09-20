@@ -55,9 +55,10 @@ textarea { max-width: 280px; }
 }
 
 .flex-container {
-    padding: 10px;
     display: flex;
+    padding: 10px;
 }
+
 .flex-item {
     margin: 10px;
     padding: 5px;
