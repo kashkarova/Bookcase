@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using Bookcase.BLL.Services.Interfaces;
 using Bookcase.Domain.DomainModels;
 using Bookcase.ViewModel;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 
 namespace Bookcase.Web.Controllers
 {
@@ -36,6 +39,7 @@ namespace Bookcase.Web.Controllers
             var mappedAuthorBooks = mappedAuthor.Books.Select(b => b.BookId);
 
             SetViewDataWithBooks(mappedAuthorBooks);
+
             return PartialView(mappedAuthor);
         }
 
@@ -112,7 +116,15 @@ namespace Bookcase.Web.Controllers
 
             var books = new SelectList(unmappedBooks, "Id", "Title");
 
-            ViewData["books"] = books;
+            ViewData["books"] = books; 
+        }
+
+        public JsonResult GetViewDataWithBooks()
+        {
+            var unmappedBooks = _bookService.GetAll();
+
+            var mappedBooks = Mapper.Map<List<Book>, List<BookViewModel>>(unmappedBooks);
+            return Json(mappedBooks, JsonRequestBehavior.AllowGet);
         }
     }
 }

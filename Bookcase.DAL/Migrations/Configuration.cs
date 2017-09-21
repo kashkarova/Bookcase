@@ -16,7 +16,7 @@ namespace Bookcase.DAL.Migrations
         {
             
             context.Author.AddOrUpdate(
-                a => a.Id,
+                a => a.Name,
                 new AuthorEntity
                 {
                     Name = "А.С. Пушкин",
@@ -63,7 +63,7 @@ namespace Bookcase.DAL.Migrations
 
 
             context.Book.AddOrUpdate(
-                b => b.Id,
+                b => b.Title,
                 new BookEntity
                 {
                     Title = "Война и мир. Том 1.",
