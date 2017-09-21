@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bookcase.Domain.DomainModels
+﻿namespace Bookcase.Domain.DomainModels
 {
     public class AuthorBook : DomainBase
     {

@@ -15,7 +15,7 @@ namespace Bookcase.DAL.UoW.Realization
 
             BookRepository = new BookRepository(_db);
             AuthorRepository = new AuthorRepository(_db);
-            AuthorBookRepository=new AuthorBookRepository(_db);
+            AuthorBookRepository = new AuthorBookRepository(_db);
         }
 
         public IBookRepository BookRepository { get; }

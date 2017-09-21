@@ -14,7 +14,6 @@ namespace Bookcase.DAL.Migrations
 
         protected override void Seed(BookcaseContext context)
         {
-            
             context.Author.AddOrUpdate(
                 a => a.Name,
                 new AuthorEntity
@@ -93,7 +92,6 @@ namespace Bookcase.DAL.Migrations
             );
 
             context.SaveChanges();
-            
         }
     }
 }

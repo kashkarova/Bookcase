@@ -90,11 +90,9 @@ namespace Bookcase.BLL.Services.Realization
             var author = _unitOfWork.AuthorRepository.Get(authorId);
 
             if (author.Books.Exists(b => b.BookId == book.Id))
-            {
                 throw new ArgumentException("Invalid book id. Author by that id already contains that book");
-            }
 
-            var authorBook = new AuthorBook()
+            var authorBook = new AuthorBook
             {
                 AuthorId = author.Id,
                 BookId = book.Id
@@ -110,16 +108,13 @@ namespace Bookcase.BLL.Services.Realization
             var author = _unitOfWork.AuthorRepository.Get(authorId);
 
             if (!author.Books.Exists(b => b.BookId == book.Id))
-            {
                 throw new ArgumentException("Invalid book id. Author by that id don't contains that book");
-            }
 
             var authorBook =
                 _unitOfWork.AuthorBookRepository.First(ab => ab.BookId == book.Id && ab.AuthorId == author.Id);
 
             _unitOfWork.AuthorBookRepository.Delete(authorBook.Id);
             _unitOfWork.Save();
-
         }
     }
 }

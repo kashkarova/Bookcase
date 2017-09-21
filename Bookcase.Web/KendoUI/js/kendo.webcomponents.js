@@ -25,7 +25,7 @@
 (function(f, define) {
     define("kendo.webcomponents", ["kendo.core"], f);
 }(function() {
-        var __meta__ = {
+        const __meta__ = {
             id: "webcomponents",
             name: "Web Components",
             category: "framework",
@@ -66,7 +66,7 @@
             var EVENT_PREFIX = "on-";
             var registered = [];
             kendo.onWidgetRegistered(function(entry) {
-                var elementName = entry.prefix + entry.widget.prototype.options.name.toLowerCase();
+                const elementName = entry.prefix + entry.widget.prototype.options.name.toLowerCase();
                 if (registered.indexOf(elementName) === -1) {
                     registered.push(elementName);
                     registerElement(elementName, entry.widget);
@@ -89,7 +89,7 @@
                 } else if (numberRegExp.test(value)) {
                     value = parseFloat(value);
                 } else if (jsonRegExp.test(value) && !jsonFormatRegExp.test(value)) {
-                    value = new Function("return (" + value + ")")();
+                    value = new Function(`return (${value})`)();
                 }
                 return value;
             }
@@ -115,7 +115,7 @@
             }
 
             function eventHandler(eventName, e) {
-                var event = document.createEvent("CustomEvent");
+                const event = document.createEvent("CustomEvent");
                 event.initCustomEvent(eventName, false, true, cloneEvent(e));
                 this.dispatchEvent(event);
                 if (event.defaultPrevented) {
@@ -124,8 +124,8 @@
             }
 
             function expose(component, obj) {
-                var props = Object.keys(obj);
-                for (var idx = 0; idx <= props.length; idx++) {
+                const props = Object.keys(obj);
+                for (let idx = 0; idx <= props.length; idx++) {
                     if (typeof obj[props[idx]] === "function") {
                         if (!component[props[idx]]) {
                             component[props[idx]] = obj[props[idx]].bind(component.widget);
@@ -141,7 +141,7 @@
 
             function registerElement(name, widget) {
                 var options = widget.prototype.options;
-                var prototype = Object.create(HTMLElement.prototype);
+                const prototype = Object.create(HTMLElement.prototype);
                 Object.defineProperty(prototype,
                     "options",
                     {
@@ -149,12 +149,12 @@
                             return this.widget.options;
                         },
                         set: function(options) {
-                            var instance = this.widget;
+                            const instance = this.widget;
                             options = $.extend(true, {}, instance.options, options);
-                            var _wrapper = $(instance.wrapper)[0];
-                            var _element = $(instance.element)[0];
+                            const _wrapper = $(instance.wrapper)[0];
+                            const _element = $(instance.element)[0];
                             instance._destroy();
-                            var newElement = document.createElement(TAGNAMES[name] || "div");
+                            const newElement = document.createElement(TAGNAMES[name] || "div");
                             if (_wrapper && _element) {
                                 _wrapper.parentNode.replaceChild(_element, _wrapper);
                                 $(_element).replaceWith(newElement);
@@ -181,8 +181,8 @@
                     }.bind(this));
                 };
                 prototype.attachedCallback = function() {
-                    var that = this;
-                    var element = document.createElement(TAGNAMES[name] || "div");
+                    const that = this;
+                    const element = document.createElement(TAGNAMES[name] || "div");
                     $(element).append(that.childNodes);
                     $(element).attr("class", $(that).attr("class"));
                     $(element).attr("style", $(that).attr("style"));
@@ -198,8 +198,8 @@
                 prototype.detachedCallback = function() {
                     kendo.destroy(this.element);
                 };
-                kendo.webComponents.push("kendo-" + name);
-                document.registerElement("kendo-" + name, { prototype: prototype });
+                kendo.webComponents.push(`kendo-${name}`);
+                document.registerElement(`kendo-${name}`, { prototype: prototype });
             }
         }(window.kendo.jQuery, window.angular));
         return window.kendo;

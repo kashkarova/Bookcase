@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using Bookcase.BLL.Services.Interfaces;
 using Bookcase.Domain.DomainModels;
 using Bookcase.ViewModel;
-using Kendo.Mvc.Extensions;
-using Kendo.Mvc.UI;
 
 namespace Bookcase.Web.Controllers
 {
@@ -116,7 +113,7 @@ namespace Bookcase.Web.Controllers
 
             var books = new SelectList(unmappedBooks, "Id", "Title");
 
-            ViewData["books"] = books; 
+            ViewData["books"] = books;
         }
 
         public JsonResult GetViewDataWithBooks()
