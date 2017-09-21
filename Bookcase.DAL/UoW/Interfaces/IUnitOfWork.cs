@@ -1,13 +1,13 @@
 ﻿using System;
-using Bookcase.DAL.DbEntities;
 using Bookcase.DAL.Repository.Interfaces;
 
 namespace Bookcase.DAL.UoW.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IGenericRepository<BookEntity> BookRepository { get; }
-        IGenericRepository<AuthorEntity> AuthorRepository { get; }
+        IBookRepository BookRepository { get; }
+        IAuthorRepository AuthorRepository { get; }
+        IAuthorBookRepository AuthorBookRepository { get; }
 
         void Save();
     }

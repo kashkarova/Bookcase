@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
-using AutoMapper;
-using Bookcase.BLL.DomainModels;
 using Bookcase.BLL.Services.Interfaces;
-using Bookcase.DAL.DbEntities;
 using Bookcase.DAL.UoW.Interfaces;
+using Bookcase.Domain.DomainModels;
 
 namespace Bookcase.BLL.Services.Realization
 {
@@ -20,39 +19,26 @@ namespace Bookcase.BLL.Services.Realization
 
         public Author Get(int id)
         {
-            var unmappedAuthor = _unitOfWork.AuthorRepository.Get(id);
-            var mappedAuthor = Mapper.Map<AuthorEntity, Author>(unmappedAuthor);
-
-            return mappedAuthor;
+            return _unitOfWork.AuthorRepository.Get(id);
         }
 
         public List<Author> GetAll()
         {
-            var unmappedAuthors = _unitOfWork.AuthorRepository.GetAll();
-            var mappedAuthors = Mapper.Map<List<AuthorEntity>, List<Author>>(unmappedAuthors);
+            var authors = _unitOfWork.AuthorRepository.GetAll().ToList();
 
-            return mappedAuthors;
+            return authors;
         }
 
         public List<Author> GetAll(Expression<Func<Author, bool>> predicate)
         {
-            var mappedPredicate =
-                Mapper.Map<Expression<Func<Author, bool>>, Expression<Func<AuthorEntity, bool>>>(predicate);
+            var authors = _unitOfWork.AuthorRepository.GetAll(predicate).ToList();
 
-            var mappedAuthors =
-                Mapper.Map<List<AuthorEntity>, List<Author>>(_unitOfWork.AuthorRepository.GetAll(mappedPredicate));
-
-            return mappedAuthors;
+            return authors;
         }
 
         public Author First(Expression<Func<Author, bool>> predicate)
         {
-            var mappedPredicate =
-                Mapper.Map<Expression<Func<Author, bool>>, Expression<Func<AuthorEntity, bool>>>(predicate);
-
-            var mappedAuthor = Mapper.Map<AuthorEntity, Author>(_unitOfWork.AuthorRepository.First(mappedPredicate));
-
-            return mappedAuthor;
+            return _unitOfWork.AuthorRepository.First(predicate);
         }
 
         public bool Exists(int id)
@@ -62,10 +48,7 @@ namespace Bookcase.BLL.Services.Realization
 
         public bool Exists(Expression<Func<Author, bool>> predicate)
         {
-            var mappedPredicate =
-                Mapper.Map<Expression<Func<Author, bool>>, Expression<Func<AuthorEntity, bool>>>(predicate);
-
-            return _unitOfWork.AuthorRepository.Exists(mappedPredicate);
+            return _unitOfWork.AuthorRepository.Exists(predicate);
         }
 
         public int Count()
@@ -75,30 +58,23 @@ namespace Bookcase.BLL.Services.Realization
 
         public int Count(Expression<Func<Author, bool>> predicate)
         {
-            var mappedPredicate =
-                Mapper.Map<Expression<Func<Author, bool>>, Expression<Func<AuthorEntity, bool>>>(predicate);
-
-            return _unitOfWork.AuthorRepository.Count(mappedPredicate);
+            return _unitOfWork.AuthorRepository.Count(predicate);
         }
 
         public Author Create(Author item)
         {
-            var mappedAuthor = Mapper.Map<Author, AuthorEntity>(item);
-
-            var createdAuthor = _unitOfWork.AuthorRepository.Create(mappedAuthor);
+            var createdAuthor = _unitOfWork.AuthorRepository.Create(item);
             _unitOfWork.Save();
 
-            return Mapper.Map<AuthorEntity, Author>(createdAuthor);
+            return createdAuthor;
         }
 
         public Author Update(Author item)
         {
-            var mappedAuthor = Mapper.Map<Author, AuthorEntity>(item);
-
-            var updatedAuthor = _unitOfWork.AuthorRepository.Update(mappedAuthor);
+            var updatedAuthor = _unitOfWork.AuthorRepository.Update(item);
             _unitOfWork.Save();
 
-            return Mapper.Map<AuthorEntity, Author>(updatedAuthor);
+            return updatedAuthor;
         }
 
         public void Delete(int id)
@@ -113,14 +89,18 @@ namespace Bookcase.BLL.Services.Realization
             var book = _unitOfWork.BookRepository.Get(bookId);
             var author = _unitOfWork.AuthorRepository.Get(authorId);
 
-            var mappedBook = Mapper.Map<BookEntity, Book>(book);
-            var mappedAuthor = Mapper.Map<AuthorEntity, Author>(author);
+            if (author.Books.Exists(b => b.BookId == book.Id))
+            {
+                throw new ArgumentException("Invalid book id. Author by that id already contains that book");
+            }
 
-            mappedAuthor.Books.Add(mappedBook);
+            var authorBook = new AuthorBook()
+            {
+                AuthorId = author.Id,
+                BookId = book.Id
+            };
 
-            var unmappedAuthor = Mapper.Map<Author, AuthorEntity>(mappedAuthor);
-
-            _unitOfWork.AuthorRepository.Update(unmappedAuthor);
+            _unitOfWork.AuthorBookRepository.Create(authorBook);
             _unitOfWork.Save();
         }
 
@@ -129,15 +109,17 @@ namespace Bookcase.BLL.Services.Realization
             var book = _unitOfWork.BookRepository.Get(bookId);
             var author = _unitOfWork.AuthorRepository.Get(authorId);
 
-            var mappedBook = Mapper.Map<BookEntity, Book>(book);
-            var mappedAuthor = Mapper.Map<AuthorEntity, Author>(author);
+            if (!author.Books.Exists(b => b.BookId == book.Id))
+            {
+                throw new ArgumentException("Invalid book id. Author by that id don't contains that book");
+            }
 
-            mappedAuthor.Books.Remove(mappedBook);
+            var authorBook =
+                _unitOfWork.AuthorBookRepository.First(ab => ab.BookId == book.Id && ab.AuthorId == author.Id);
 
-            var unmappedAuthor = Mapper.Map<Author, AuthorEntity>(mappedAuthor);
-
-            _unitOfWork.AuthorRepository.Update(unmappedAuthor);
+            _unitOfWork.AuthorBookRepository.Delete(authorBook.Id);
             _unitOfWork.Save();
+
         }
     }
 }

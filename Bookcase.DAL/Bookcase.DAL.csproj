@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -48,12 +51,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbContext\BookcaseContext.cs" />
+    <Compile Include="DbEntities\AuthorBookEntity.cs" />
     <Compile Include="DbEntities\AuthorEntity.cs" />
-    <Compile Include="DbEntities\BaseEntity.cs" />
+    <Compile Include="DbEntities\EntityBase.cs" />
     <Compile Include="DbEntities\BookEntity.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Implementations\AuthorBookRepository.cs" />
+    <Compile Include="Repository\Implementations\AuthorRepository.cs" />
+    <Compile Include="Repository\Implementations\BookRepository.cs" />
     <Compile Include="Repository\Implementations\GenericRepository.cs" />
+    <Compile Include="Repository\Interfaces\IAuthorBookRepository.cs" />
+    <Compile Include="Repository\Interfaces\IAuthorRepository.cs" />
+    <Compile Include="Repository\Interfaces\IBookRepository.cs" />
     <Compile Include="Repository\Interfaces\IGenericRepository.cs" />
     <Compile Include="UoW\Interfaces\IUnitOfWork.cs" />
     <Compile Include="UoW\Realization\UnitOfWork.cs" />
@@ -61,6 +71,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bookcase.Domain\Bookcase.Domain.csproj">
+      <Project>{5A021E9E-BC71-4880-BEE5-9C38306D974F}</Project>
+      <Name>Bookcase.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

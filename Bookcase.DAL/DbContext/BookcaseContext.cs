@@ -9,9 +9,13 @@ namespace Bookcase.DAL.DbContext
         public BookcaseContext() : base("BookcaseDb")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<BookcaseContext, Configuration>());
+
+            Configuration.ProxyCreationEnabled = false;
+            Configuration.AutoDetectChangesEnabled = false;
         }
 
-        public DbSet<BookEntity> Book { get; set; }
-        public DbSet<AuthorEntity> Author { get; set; }
+        public virtual DbSet<BookEntity> Book { get; set; }
+        public virtual DbSet<AuthorEntity> Author { get; set; }
+        public virtual DbSet<AuthorBookEntity> AuthorBook { get; set; }
     }
 }

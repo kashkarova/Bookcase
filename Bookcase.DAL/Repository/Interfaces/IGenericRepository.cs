@@ -1,27 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using Bookcase.DAL.DbEntities;
+using Bookcase.Domain.DomainModels;
 
 namespace Bookcase.DAL.Repository.Interfaces
 {
-    public interface IGenericRepository<TEntity> : IDisposable
-        where TEntity : BaseEntity
+    public interface IGenericRepository<TEntity, TDomain> :
+        IDisposable
+        where TEntity : EntityBase
+        where TDomain : DomainBase
     {
-        TEntity Get(int id);
-        List<TEntity> GetAll();
-        List<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate);
+        TDomain Get(int id);
+        IQueryable<TDomain> GetAll();
+        IQueryable<TDomain> GetAll(Expression<Func<TDomain, bool>> predicate);
 
-        TEntity First(Expression<Func<TEntity, bool>> predicate);
+        TDomain First(Expression<Func<TDomain, bool>> predicate);
 
         bool Exists(int id);
-        bool Exists(Expression<Func<TEntity, bool>> predicate);
+        bool Exists(Expression<Func<TDomain, bool>> predicate);
 
         int Count();
-        int Count(Expression<Func<TEntity, bool>> predicate);
+        int Count(Expression<Func<TDomain, bool>> predicate);
 
-        TEntity Create(TEntity item);
-        TEntity Update(TEntity item);
+        TDomain Create(TDomain item);
+        TDomain Update(TDomain item);
         void Delete(int id);
     }
 }

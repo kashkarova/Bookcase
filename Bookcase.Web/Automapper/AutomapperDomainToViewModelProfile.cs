@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Bookcase.BLL.DomainModels;
+using Bookcase.Domain.DomainModels;
 using Bookcase.ViewModel;
 
 namespace Bookcase.Web.Automapper
@@ -12,6 +12,9 @@ namespace Bookcase.Web.Automapper
                 .ReverseMap();
 
             CreateMap<Author, AuthorViewModel>()
+                .ReverseMap();
+
+            CreateMap<AuthorBook, AuthorBookViewModel>()
                 .ReverseMap();
         }
     }

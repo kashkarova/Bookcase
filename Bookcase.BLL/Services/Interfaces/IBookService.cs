@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Bookcase.BLL.DomainModels;
+using Bookcase.Domain.DomainModels;
 
 namespace Bookcase.BLL.Services.Interfaces
 {
@@ -22,7 +22,5 @@ namespace Bookcase.BLL.Services.Interfaces
         Book Create(Book item);
         Book Update(Book item);
         void Delete(int id);
-
-        
     }
 }

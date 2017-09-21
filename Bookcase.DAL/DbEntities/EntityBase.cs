@@ -2,7 +2,7 @@
 
 namespace Bookcase.DAL.DbEntities
 {
-    public class BaseEntity
+    public class EntityBase
     {
         [Key]
         public int Id { get; set; }

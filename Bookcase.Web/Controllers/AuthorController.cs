@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
-using Bookcase.BLL.DomainModels;
 using Bookcase.BLL.Services.Interfaces;
+using Bookcase.Domain.DomainModels;
 using Bookcase.ViewModel;
 
 namespace Bookcase.Web.Controllers
@@ -21,7 +21,8 @@ namespace Bookcase.Web.Controllers
 
         public ActionResult Index()
         {
-            var mappedAuthors = Mapper.Map<List<Author>, List<AuthorViewModel>>(_authorService.GetAll());
+            var unmapperAuthors = _authorService.GetAll();
+            var mappedAuthors = Mapper.Map<List<Author>, List<AuthorViewModel>>(unmapperAuthors);
 
             return View(mappedAuthors);
         }
@@ -32,7 +33,7 @@ namespace Bookcase.Web.Controllers
             var unmappedAuthor = _authorService.Get(id);
 
             var mappedAuthor = Mapper.Map<Author, AuthorViewModel>(unmappedAuthor);
-            var mappedAuthorBooks = mappedAuthor.Books.Select(b => b.Id);
+            var mappedAuthorBooks = mappedAuthor.Books.Select(b => b.BookId);
 
             SetViewDataWithBooks(mappedAuthorBooks);
             return PartialView(mappedAuthor);
@@ -88,30 +89,18 @@ namespace Bookcase.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddBookToAuthor(int authorId, int bookId)
+        public ActionResult AddBookToAuthor(int bookId, int authorId)
         {
-            var unmappedAuthor = _authorService.Get(authorId);
-            var unmappedBook = _bookService.Get(bookId);
-
-            var mappedAuthor = Mapper.Map<Author, AuthorViewModel>(unmappedAuthor);
-            var mappedBook = Mapper.Map<Book, BookViewModel>(unmappedBook);
-
-            _authorService.AddBookToAuthor(mappedBook.Id, mappedAuthor.Id);
+            _authorService.AddBookToAuthor(bookId, authorId);
 
             return RedirectToAction("Index");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteBookFromAuthor(int authorId, int bookId)
+        public ActionResult DeleteBookFromAuthor(int bookId, int authorId)
         {
-            var unmappedAuthor = _authorService.Get(authorId);
-            var unmappedBook = _bookService.Get(bookId);
-
-            var mappedAuthor = Mapper.Map<Author, AuthorViewModel>(unmappedAuthor);
-            var mappedBook = Mapper.Map<Book, BookViewModel>(unmappedBook);
-
-            _authorService.DeleteBookFromAuthor(mappedBook.Id, mappedAuthor.Id);
+            _authorService.DeleteBookFromAuthor(bookId, authorId);
 
             return RedirectToAction("Index");
         }

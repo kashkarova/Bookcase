@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
-using AutoMapper;
-using Bookcase.BLL.DomainModels;
 using Bookcase.BLL.Services.Interfaces;
-using Bookcase.DAL.DbEntities;
 using Bookcase.DAL.UoW.Interfaces;
+using Bookcase.Domain.DomainModels;
 
 namespace Bookcase.BLL.Services.Realization
 {
@@ -20,40 +19,22 @@ namespace Bookcase.BLL.Services.Realization
 
         public Book Get(int id)
         {
-            var unmappedBook = _unitOfWork.BookRepository.Get(id);
-            var mappedBook = Mapper.Map<BookEntity, Book>(unmappedBook);
-
-            return mappedBook;
+            return _unitOfWork.BookRepository.Get(id);
         }
 
         public List<Book> GetAll()
         {
-            var unmappedBooks = _unitOfWork.BookRepository.GetAll();
-
-            var mappedBooks = Mapper.Map<List<BookEntity>, List<Book>>(unmappedBooks);
-
-            return mappedBooks;
+            return _unitOfWork.BookRepository.GetAll().ToList();
         }
 
         public List<Book> GetAll(Expression<Func<Book, bool>> predicate)
         {
-            var mappedPredicate =
-                Mapper.Map<Expression<Func<Book, bool>>, Expression<Func<BookEntity, bool>>>(predicate);
-
-            var mappedBooks =
-                Mapper.Map<List<BookEntity>, List<Book>>(_unitOfWork.BookRepository.GetAll(mappedPredicate));
-
-            return mappedBooks;
+            return _unitOfWork.BookRepository.GetAll(predicate).ToList();
         }
 
         public Book First(Expression<Func<Book, bool>> predicate)
         {
-            var mappedPredicate =
-                Mapper.Map<Expression<Func<Book, bool>>, Expression<Func<BookEntity, bool>>>(predicate);
-
-            var mappedBook = Mapper.Map<BookEntity, Book>(_unitOfWork.BookRepository.First(mappedPredicate));
-
-            return mappedBook;
+            return _unitOfWork.BookRepository.First(predicate);
         }
 
         public bool Exists(int id)
@@ -63,10 +44,7 @@ namespace Bookcase.BLL.Services.Realization
 
         public bool Exists(Expression<Func<Book, bool>> predicate)
         {
-            var mappedPredicate =
-                Mapper.Map<Expression<Func<Book, bool>>, Expression<Func<BookEntity, bool>>>(predicate);
-
-            return _unitOfWork.BookRepository.Exists(mappedPredicate);
+            return _unitOfWork.BookRepository.Exists(predicate);
         }
 
         public int Count()
@@ -76,30 +54,23 @@ namespace Bookcase.BLL.Services.Realization
 
         public int Count(Expression<Func<Book, bool>> predicate)
         {
-            var mappedPredicate =
-                Mapper.Map<Expression<Func<Book, bool>>, Expression<Func<BookEntity, bool>>>(predicate);
-
-            return _unitOfWork.BookRepository.Count(mappedPredicate);
+            return _unitOfWork.BookRepository.Count(predicate);
         }
 
         public Book Create(Book item)
         {
-            var mappedBook = Mapper.Map<Book, BookEntity>(item);
-
-            var createdBook = _unitOfWork.BookRepository.Create(mappedBook);
+            var createdBook = _unitOfWork.BookRepository.Create(item);
             _unitOfWork.Save();
 
-            return Mapper.Map<BookEntity, Book>(createdBook);
+            return createdBook;
         }
 
         public Book Update(Book item)
         {
-            var mappedBook = Mapper.Map<Book, BookEntity>(item);
-
-            var updatedBook = _unitOfWork.BookRepository.Update(mappedBook);
+            var updatedBook = _unitOfWork.BookRepository.Update(item);
             _unitOfWork.Save();
 
-            return Mapper.Map<BookEntity, Book>(updatedBook);
+            return updatedBook;
         }
 
         public void Delete(int id)
@@ -107,6 +78,5 @@ namespace Bookcase.BLL.Services.Realization
             _unitOfWork.BookRepository.Delete(id);
             _unitOfWork.Save();
         }
-
     }
 }

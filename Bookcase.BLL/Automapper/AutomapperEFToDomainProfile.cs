@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Bookcase.BLL.DomainModels;
 using Bookcase.DAL.DbEntities;
+using Bookcase.Domain.DomainModels;
 
 namespace Bookcase.BLL.Automapper
 {
@@ -8,10 +8,16 @@ namespace Bookcase.BLL.Automapper
     {
         public AutomapperEFToDomainProfile()
         {
-            CreateMap<BookEntity, Book>()
+            CreateMap<AuthorEntity, Author>()
+                .MaxDepth(1)
                 .ReverseMap();
 
-            CreateMap<AuthorEntity, Author>()
+            CreateMap<BookEntity, Book>()
+                .MaxDepth(1)
+                .ReverseMap();
+
+            CreateMap<AuthorBookEntity, AuthorBook>()
+                .MaxDepth(1)
                 .ReverseMap();
         }
     }

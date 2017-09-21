@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
-using Bookcase.BLL.DomainModels;
 using Bookcase.BLL.Services.Interfaces;
+using Bookcase.Domain.DomainModels;
 using Bookcase.ViewModel;
 
 namespace Bookcase.Web.Controllers

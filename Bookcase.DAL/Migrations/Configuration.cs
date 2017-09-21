@@ -1,5 +1,7 @@
-﻿using System.Data.Entity.Migrations;
+﻿using System;
+using System.Data.Entity.Migrations;
 using Bookcase.DAL.DbContext;
+using Bookcase.DAL.DbEntities;
 
 namespace Bookcase.DAL.Migrations
 {
@@ -12,7 +14,7 @@ namespace Bookcase.DAL.Migrations
 
         protected override void Seed(BookcaseContext context)
         {
-            /*
+            
             context.Author.AddOrUpdate(
                 a => a.Id,
                 new AuthorEntity
@@ -91,7 +93,7 @@ namespace Bookcase.DAL.Migrations
             );
 
             context.SaveChanges();
-            */
+            
         }
     }
 }

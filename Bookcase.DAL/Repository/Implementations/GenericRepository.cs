@@ -1,91 +1,100 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Bookcase.DAL.DbContext;
 using Bookcase.DAL.DbEntities;
 using Bookcase.DAL.Repository.Interfaces;
+using Bookcase.Domain.DomainModels;
 
 namespace Bookcase.DAL.Repository.Implementations
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity>
-        where TEntity : BaseEntity
+    public class GenericRepository<TEntity, TDomain> :
+        IGenericRepository<TEntity, TDomain>
+        where TEntity : EntityBase
+        where TDomain : DomainBase
     {
-        private readonly BookcaseContext _db;
+        protected readonly BookcaseContext Db;
 
         public GenericRepository(BookcaseContext db)
         {
-            _db = db;
+            Db = db;
         }
 
-        public TEntity Get(int id)
+        public virtual TDomain Get(int id)
         {
-            return _db.Set<TEntity>().Find(id);
+            return Db.Set<TEntity>().ProjectTo<TDomain>().First(x => x.Id == id);
         }
 
-        public List<TEntity> GetAll()
+        public virtual IQueryable<TDomain> GetAll()
         {
-            return _db.Set<TEntity>().ToList();
+            return Db.Set<TEntity>().ProjectTo<TDomain>();
         }
 
-        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
+        public virtual IQueryable<TDomain> GetAll(Expression<Func<TDomain, bool>> predicate)
         {
-            return _db.Set<TEntity>().Where(predicate).ToList();
+            return Db.Set<TEntity>().ProjectTo<TDomain>().Where(predicate);
         }
 
-        public TEntity First(Expression<Func<TEntity, bool>> predicate)
+        public virtual TDomain First(Expression<Func<TDomain, bool>> predicate)
         {
-            return _db.Set<TEntity>().First(predicate);
+            return Db.Set<TEntity>().ProjectTo<TDomain>().First(predicate);
         }
 
-        public bool Exists(int id)
+        public virtual bool Exists(int id)
         {
-            return _db.Set<TEntity>().Any(x => x.Id == id);
+            return Db.Set<TEntity>().Any(x => x.Id == id);
         }
 
-        public bool Exists(Expression<Func<TEntity, bool>> predicate)
+        public virtual bool Exists(Expression<Func<TDomain, bool>> predicate)
         {
-            return _db.Set<TEntity>().Any(predicate);
+            return Db.Set<TEntity>().ProjectTo<TDomain>().Any(predicate);
         }
 
-        public int Count()
+        public virtual int Count()
         {
-            return _db.Set<TEntity>().Count();
+            return Db.Set<TEntity>().Count();
         }
 
-        public int Count(Expression<Func<TEntity, bool>> predicate)
+        public virtual int Count(Expression<Func<TDomain, bool>> predicate)
         {
-            return _db.Set<TEntity>().Count(predicate);
+            return Db.Set<TEntity>().ProjectTo<TDomain>().Count(predicate);
         }
 
-        public TEntity Create(TEntity item)
+        public virtual TDomain Create(TDomain item)
         {
-            _db.Set<TEntity>().Add(item);
+            var mappedEntity = Mapper.Map<TDomain, TEntity>(item);
+            var unmappedEntity = Db.Set<TEntity>().Add(mappedEntity);
+            var mappedDomain = Mapper.Map<TEntity, TDomain>(unmappedEntity);
 
-            return item;
+            return mappedDomain;
         }
 
-        public TEntity Update(TEntity item)
+        public virtual TDomain Update(TDomain item)
         {
-            _db.Entry(item).State = EntityState.Modified;
+            var mappedEntity = Mapper.Map<TDomain, TEntity>(item);
+            Db.Entry(mappedEntity).State = EntityState.Modified;
 
-            return item;
+            var unmappedDomain = Mapper.Map<TEntity, TDomain>(mappedEntity);
+
+            return unmappedDomain;
         }
 
-        public void Delete(int id)
+        public virtual void Delete(int id)
         {
-            var itemForDelete = _db.Set<TEntity>().Find(id);
+            var itemForDelete = Db.Set<TEntity>().Find(id);
 
             if (itemForDelete == null)
                 throw new NullReferenceException();
 
-            _db.Set<TEntity>().Remove(itemForDelete);
+            Db.Set<TEntity>().Remove(itemForDelete);
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
-            _db.Dispose();
+            Db.Dispose();
         }
     }
 }

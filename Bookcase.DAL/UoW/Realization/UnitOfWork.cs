@@ -1,5 +1,4 @@
 ﻿using Bookcase.DAL.DbContext;
-using Bookcase.DAL.DbEntities;
 using Bookcase.DAL.Repository.Implementations;
 using Bookcase.DAL.Repository.Interfaces;
 using Bookcase.DAL.UoW.Interfaces;
@@ -14,12 +13,14 @@ namespace Bookcase.DAL.UoW.Realization
         {
             _db = db;
 
-            BookRepository = new GenericRepository<BookEntity>(_db);
-            AuthorRepository = new GenericRepository<AuthorEntity>(_db);
+            BookRepository = new BookRepository(_db);
+            AuthorRepository = new AuthorRepository(_db);
+            AuthorBookRepository=new AuthorBookRepository(_db);
         }
 
-        public IGenericRepository<BookEntity> BookRepository { get; }
-        public IGenericRepository<AuthorEntity> AuthorRepository { get; }
+        public IBookRepository BookRepository { get; }
+        public IAuthorRepository AuthorRepository { get; }
+        public IAuthorBookRepository AuthorBookRepository { get; }
 
         public void Save()
         {

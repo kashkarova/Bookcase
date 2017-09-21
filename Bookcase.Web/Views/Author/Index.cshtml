@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Bookcase.ViewModel.AuthorViewModel>
 <script src="~/Scripts/DomainScripts/Author.js"></script>
-<br />
+<br/>
 <p>
-    @Ajax.ActionLink("Create", "Create", null, new AjaxOptions { UpdateTargetId = "myDialog", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-default", data_toggle = "modal", data_target = "#myModal", type = "button" })
+    @Ajax.ActionLink("Create", "Create", null, new AjaxOptions {UpdateTargetId = "myDialog", InsertionMode = InsertionMode.Replace}, new {@class = "btn btn-default", data_toggle = "modal", data_target = "#myModal", type = "button"})
 </p>
 
 <table id="grid">
@@ -24,7 +24,7 @@
     {
         <tr>
             <td>
-                <img src="~/Content/Authors/@item.Photo" class="customer-photo" alt="" />
+                <img src="~/Content/Authors/@item.Photo" class="customer-photo" alt=""/>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
@@ -34,16 +34,16 @@
                 @Html.DisplayFor(modelItem => item.Country)
             </td>
             <td>
-                @Ajax.ActionLink("Edit", "Edit", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "myDialog", InsertionMode = InsertionMode.Replace, AllowCache = false, HttpMethod = "GET" }, new { @class = "btn btn-primary", data_toggle = "modal", data_target = "#myModal", type = "button" })
+                @Ajax.ActionLink("Edit", "Edit", new {id = item.Id}, new AjaxOptions {UpdateTargetId = "myDialog", InsertionMode = InsertionMode.Replace, AllowCache = false, HttpMethod = "GET"}, new {@class = "btn btn-primary", data_toggle = "modal", data_target = "#myModal", type = "button"})
             </td>
             <td>
-                @Ajax.ActionLink("Details", "Details", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "myDialog", InsertionMode = InsertionMode.Replace, AllowCache = false, HttpMethod = "GET" }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#myModal", type = "button" })
+                @Ajax.ActionLink("Details", "Details", new {id = item.Id}, new AjaxOptions {UpdateTargetId = "myDialog", InsertionMode = InsertionMode.Replace, AllowCache = false, HttpMethod = "GET"}, new {@class = "btn btn-info", data_toggle = "modal", data_target = "#myModal", type = "button"})
             </td>
             <td>
-                @using (Html.BeginForm("Delete", "Author", new { id = item.Id }))
+                @using (Html.BeginForm("Delete", "Author", new {id = item.Id}))
                 {
                     @Html.AntiForgeryToken()
-                    <input type="submit" value="Delete" class="btn btn-warning" />
+                    <input type="submit" value="Delete" class="btn btn-warning"/>
                 }
             </td>
         </tr>

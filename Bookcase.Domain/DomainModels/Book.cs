@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Bookcase.BLL.DomainModels
+namespace Bookcase.Domain.DomainModels
 {
-    public class Book
+    public class Book : DomainBase
     {
-        public int Id { get; set; }
-
         public string Title { get; set; }
 
         public string PublishingHouse { get; set; }
 
         public DateTime Year { get; set; }
 
-        public virtual List<Author> Authors { get; set; }
+        public List<AuthorBook> Authors { get; set; }
     }
 }
