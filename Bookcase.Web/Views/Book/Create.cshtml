@@ -31,8 +31,33 @@
                 @Html.ValidationMessageFor(model => model.Year, "", new {@class = "text-danger"})
             </div>
         </div>
+
+        <div class="form-group">          
+            <label class = "control-label col-md-2">Author</label>
+            <div class="col-md-10">
+                <input id="autocomplete" name="authorId" class="form-control" />
+            </div>           
+        </div>
     </div>
     <div class="modal-footer">
         <input type="submit" value="Create" class="btn btn-success"/>
     </div>
 }
+
+<script>
+    $(document).ready(function() {
+        $("#autocomplete").kendoAutoComplete({
+            dataTextField: "Id",
+            template: "#= Name #",
+            filter: "contains",
+            minLength: 3,
+            dataSource: {
+                type: "json",
+                serverFiltering: true,
+                transport: {
+                    read: "../Book/GetAllAuthors"
+                }
+            }
+        });
+    });
+</script>

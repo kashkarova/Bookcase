@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Bookcase.DAL.DbEntities
 {
-    public class AuthorEntity : EntityBase
+    public class Author : EntityBase
     {
         [Required]
         [MaxLength(100)]
@@ -19,6 +19,6 @@ namespace Bookcase.DAL.DbEntities
 
         public string Photo { get; set; }
 
-        public virtual ICollection<AuthorBookEntity> Books { get; set; }
+        public virtual ICollection<AuthorBook> Books { get; set; }
     }
 }

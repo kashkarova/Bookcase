@@ -7,11 +7,7 @@ namespace Bookcase.Web.Automapper
     {
         public static void Initialize()
         {
-            Mapper.Initialize(cfg =>
-            {
-                cfg.AddProfile<AutomapperEFToDomainProfile>();
-                cfg.AddProfile<AutomapperDomainToViewModelProfile>();
-            });
+            Mapper.Initialize(cfg => { cfg.AddProfile<AutomapperEFToDomainProfile>(); });
 
             Mapper.Configuration.AssertConfigurationIsValid();
         }

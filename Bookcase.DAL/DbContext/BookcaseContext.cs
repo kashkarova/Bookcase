@@ -14,8 +14,8 @@ namespace Bookcase.DAL.DbContext
             Configuration.AutoDetectChangesEnabled = false;
         }
 
-        public virtual DbSet<BookEntity> Book { get; set; }
-        public virtual DbSet<AuthorEntity> Author { get; set; }
-        public virtual DbSet<AuthorBookEntity> AuthorBook { get; set; }
+        public virtual DbSet<Book> Book { get; set; }
+        public virtual DbSet<Author> Author { get; set; }
+        public virtual DbSet<AuthorBook> AuthorBook { get; set; }
     }
 }

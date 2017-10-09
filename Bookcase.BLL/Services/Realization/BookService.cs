@@ -2,81 +2,171 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using AutoMapper;
 using Bookcase.BLL.Services.Interfaces;
-using Bookcase.DAL.UoW.Interfaces;
-using Bookcase.Domain.DomainModels;
+using Bookcase.DAL.DbEntities;
+using Bookcase.DAL.Repository.Interfaces;
+using Bookcase.ViewModel;
 
 namespace Bookcase.BLL.Services.Realization
 {
     public class BookService : IBookService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IAuthorBookRepository _authorBookRepository;
+        private readonly IAuthorRepository _authorRepository;
+        private readonly IBookRepository _bookRepository;
 
-        public BookService(IUnitOfWork unitOfWork)
+        public BookService(IBookRepository bookRepository, IAuthorRepository authorRepository,
+            IAuthorBookRepository authorBookRepository)
         {
-            _unitOfWork = unitOfWork;
+            _bookRepository = bookRepository;
+            _authorRepository = authorRepository;
+            _authorBookRepository = authorBookRepository;
         }
 
-        public Book Get(int id)
+        public BookViewModel Get(int id)
         {
-            return _unitOfWork.BookRepository.Get(id);
+            var unmappedBook = _bookRepository.Get(id);
+            var mappedBook = Mapper.Map<Book, BookViewModel>(unmappedBook);
+
+            return mappedBook;
         }
 
-        public List<Book> GetAll()
+        public List<BookViewModel> GetAll()
         {
-            return _unitOfWork.BookRepository.GetAll().ToList();
+            var unmappedBooks = _bookRepository.GetAll().ToList();
+            var mappedBooks = Mapper.Map<List<Book>, List<BookViewModel>>(unmappedBooks);
+
+            return mappedBooks;
         }
 
-        public List<Book> GetAll(Expression<Func<Book, bool>> predicate)
+        public List<BookViewModel> GetAll(Expression<Func<BookViewModel, bool>> predicate)
         {
-            return _unitOfWork.BookRepository.GetAll(predicate).ToList();
+            var mappedPredicate =
+                Mapper.Map<Expression<Func<BookViewModel, bool>>, Expression<Func<Book, bool>>>(predicate);
+
+            var unmappedBooks = _bookRepository.GetAll(mappedPredicate).ToList();
+            var mappedBooks = Mapper.Map<List<Book>, List<BookViewModel>>(unmappedBooks);
+
+            return mappedBooks;
         }
 
-        public Book First(Expression<Func<Book, bool>> predicate)
+        public BookViewModel First(Expression<Func<BookViewModel, bool>> predicate)
         {
-            return _unitOfWork.BookRepository.First(predicate);
+            var mappedPredicate =
+                Mapper.Map<Expression<Func<BookViewModel, bool>>, Expression<Func<Book, bool>>>(predicate);
+
+            var unmappedBook = _bookRepository.First(mappedPredicate);
+            var mappedBook = Mapper.Map<Book, BookViewModel>(unmappedBook);
+
+            return mappedBook;
         }
 
         public bool Exists(int id)
         {
-            return _unitOfWork.BookRepository.Exists(id);
+            return _bookRepository.Exists(id);
         }
 
-        public bool Exists(Expression<Func<Book, bool>> predicate)
+        public bool Exists(Expression<Func<BookViewModel, bool>> predicate)
         {
-            return _unitOfWork.BookRepository.Exists(predicate);
+            var mappedPredicate =
+                Mapper.Map<Expression<Func<BookViewModel, bool>>, Expression<Func<Book, bool>>>(predicate);
+
+            return _bookRepository.Exists(mappedPredicate);
         }
 
         public int Count()
         {
-            return _unitOfWork.BookRepository.Count();
+            return _bookRepository.Count();
         }
 
-        public int Count(Expression<Func<Book, bool>> predicate)
+        public int Count(Expression<Func<BookViewModel, bool>> predicate)
         {
-            return _unitOfWork.BookRepository.Count(predicate);
+            var mappedPredicate =
+                Mapper.Map<Expression<Func<BookViewModel, bool>>, Expression<Func<Book, bool>>>(predicate);
+
+            return _bookRepository.Count(mappedPredicate);
         }
 
-        public Book Create(Book item)
+        public BookViewModel Create(BookViewModel item)
         {
-            var createdBook = _unitOfWork.BookRepository.Create(item);
-            _unitOfWork.Save();
+            var mappedItem = Mapper.Map<BookViewModel, Book>(item);
 
-            return createdBook;
+            var unmappedBook = _bookRepository.Create(mappedItem);
+            _bookRepository.Save();
+
+            var mappedBook = Mapper.Map<Book, BookViewModel>(unmappedBook);
+
+            return mappedBook;
         }
 
-        public Book Update(Book item)
+        public BookViewModel Update(BookViewModel item)
         {
-            var updatedBook = _unitOfWork.BookRepository.Update(item);
-            _unitOfWork.Save();
+            var mappedItem = Mapper.Map<BookViewModel, Book>(item);
 
-            return updatedBook;
+            var unmappedBook = _bookRepository.Update(mappedItem);
+            _bookRepository.Save();
+
+            var mappedBook = Mapper.Map<Book, BookViewModel>(unmappedBook);
+
+            return mappedBook;
         }
 
         public void Delete(int id)
         {
-            _unitOfWork.BookRepository.Delete(id);
-            _unitOfWork.Save();
+            _bookRepository.Delete(id);
+            _bookRepository.Save();
+        }
+
+        public void AddAuthorToBook(int bookId, int authorId)
+        {
+            var book = _bookRepository.Get(bookId);
+            var author = _authorRepository.Get(authorId);
+
+            var authorBookList = _authorBookRepository.GetAll(b => b.BookId == book.Id);
+
+            if (authorBookList.Any(b=>b.AuthorId==author.Id))
+                throw new ArgumentException("Invalid author id. Book by that id already contains that author.");
+
+            var authorBook = new AuthorBook
+            {
+                AuthorId = author.Id,
+                BookId = book.Id
+            };
+
+            _authorBookRepository.Create(authorBook);
+            _authorBookRepository.Save();
+        }
+
+        public void DeleteAuthorFromBook(int bookId, int authorId)
+        {
+            var book = _bookRepository.Get(bookId);
+            var author = _authorRepository.Get(authorId);
+
+            var authorBookList = _authorBookRepository.GetAll(b => b.BookId == book.Id);
+
+            if (!authorBookList.Any(b => b.AuthorId == author.Id))
+                throw new ArgumentException("Invalid author id. Book by that id doesn`t contain that author.");
+
+            var authorBook =
+                _authorBookRepository.First(ab => ab.BookId == book.Id && ab.AuthorId == author.Id);
+
+            _authorBookRepository.Delete(authorBook.Id);
+            _authorBookRepository.Save();
+        }
+
+        public List<AuthorViewModel> GetAuthorsByBook(int bookId)
+        {
+            var book = _bookRepository.Get(bookId);
+
+            var rawAuthors = _authorBookRepository.GetAll(a => a.BookId == book.Id).ToList();
+
+           var unmappedAuthors= rawAuthors.Select(item => _authorRepository.Get(item.AuthorId)).ToList();
+
+            var mappedAuthors = Mapper.Map<List<Author>, List<AuthorViewModel>>(unmappedAuthors);
+
+            return mappedAuthors;
+
         }
     }
 }

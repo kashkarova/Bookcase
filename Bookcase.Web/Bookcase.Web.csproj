@@ -191,7 +191,6 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Automapper\AutomapperInitializer.cs" />
-    <Compile Include="Automapper\AutomapperDomainToViewModelProfile.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -480,10 +479,6 @@
     <ProjectReference Include="..\Bookcase.DI\Bookcase.DI.csproj">
       <Project>{2001D604-123E-45F4-8B3F-DF983EF4D62D}</Project>
       <Name>Bookcase.DI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bookcase.Domain\Bookcase.Domain.csproj">
-      <Project>{5A021E9E-BC71-4880-BEE5-9C38306D974F}</Project>
-      <Name>Bookcase.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bookcase.ViewModel\Bookcase.ViewModel.csproj">
       <Project>{963BF2F8-CA93-4661-817C-D535741F1898}</Project>

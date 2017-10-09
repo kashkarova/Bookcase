@@ -2,19 +2,15 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Bookcase.DAL.DbContext;
 using Bookcase.DAL.DbEntities;
 using Bookcase.DAL.Repository.Interfaces;
-using Bookcase.Domain.DomainModels;
 
 namespace Bookcase.DAL.Repository.Implementations
 {
-    public class GenericRepository<TEntity, TDomain> :
-        IGenericRepository<TEntity, TDomain>
+    public class GenericRepository<TEntity> :
+        IGenericRepository<TEntity>
         where TEntity : EntityBase
-        where TDomain : DomainBase
     {
         protected readonly BookcaseContext Db;
 
@@ -23,24 +19,24 @@ namespace Bookcase.DAL.Repository.Implementations
             Db = db;
         }
 
-        public virtual TDomain Get(int id)
+        public virtual TEntity Get(int id)
         {
-            return Db.Set<TEntity>().ProjectTo<TDomain>().First(x => x.Id == id);
+            return Db.Set<TEntity>().First(x => x.Id == id);
         }
 
-        public virtual IQueryable<TDomain> GetAll()
+        public virtual IQueryable<TEntity> GetAll()
         {
-            return Db.Set<TEntity>().ProjectTo<TDomain>();
+            return Db.Set<TEntity>();
         }
 
-        public virtual IQueryable<TDomain> GetAll(Expression<Func<TDomain, bool>> predicate)
+        public virtual IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
         {
-            return Db.Set<TEntity>().ProjectTo<TDomain>().Where(predicate);
+            return Db.Set<TEntity>().Where(predicate);
         }
 
-        public virtual TDomain First(Expression<Func<TDomain, bool>> predicate)
+        public virtual TEntity First(Expression<Func<TEntity, bool>> predicate)
         {
-            return Db.Set<TEntity>().ProjectTo<TDomain>().First(predicate);
+            return Db.Set<TEntity>().First(predicate);
         }
 
         public virtual bool Exists(int id)
@@ -48,9 +44,9 @@ namespace Bookcase.DAL.Repository.Implementations
             return Db.Set<TEntity>().Any(x => x.Id == id);
         }
 
-        public virtual bool Exists(Expression<Func<TDomain, bool>> predicate)
+        public virtual bool Exists(Expression<Func<TEntity, bool>> predicate)
         {
-            return Db.Set<TEntity>().ProjectTo<TDomain>().Any(predicate);
+            return Db.Set<TEntity>().Any(predicate);
         }
 
         public virtual int Count()
@@ -58,28 +54,25 @@ namespace Bookcase.DAL.Repository.Implementations
             return Db.Set<TEntity>().Count();
         }
 
-        public virtual int Count(Expression<Func<TDomain, bool>> predicate)
+        public virtual int Count(Expression<Func<TEntity, bool>> predicate)
         {
-            return Db.Set<TEntity>().ProjectTo<TDomain>().Count(predicate);
+            return Db.Set<TEntity>().Count(predicate);
         }
 
-        public virtual TDomain Create(TDomain item)
+        public virtual TEntity Create(TEntity item)
         {
-            var mappedEntity = Mapper.Map<TDomain, TEntity>(item);
-            var unmappedEntity = Db.Set<TEntity>().Add(mappedEntity);
-            var mappedDomain = Mapper.Map<TEntity, TDomain>(unmappedEntity);
+            var createdEntity = Db.Set<TEntity>().Add(item);
 
-            return mappedDomain;
+            return createdEntity;
         }
 
-        public virtual TDomain Update(TDomain item)
+        public virtual TEntity Update(TEntity item)
         {
-            var mappedEntity = Mapper.Map<TDomain, TEntity>(item);
-            Db.Entry(mappedEntity).State = EntityState.Modified;
+            Db.Entry(item).State = EntityState.Modified;
 
-            var unmappedDomain = Mapper.Map<TEntity, TDomain>(mappedEntity);
+            var updatedEntity = Get(item.Id);
 
-            return unmappedDomain;
+            return updatedEntity;
         }
 
         public virtual void Delete(int id)
@@ -90,6 +83,11 @@ namespace Bookcase.DAL.Repository.Implementations
                 throw new NullReferenceException();
 
             Db.Set<TEntity>().Remove(itemForDelete);
+        }
+
+        public virtual void Save()
+        {
+            Db.SaveChanges();
         }
 
         public virtual void Dispose()

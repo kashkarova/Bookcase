@@ -51,10 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbContext\BookcaseContext.cs" />
-    <Compile Include="DbEntities\AuthorBookEntity.cs" />
-    <Compile Include="DbEntities\AuthorEntity.cs" />
+    <Compile Include="DbEntities\AuthorBook.cs" />
+    <Compile Include="DbEntities\Author.cs" />
     <Compile Include="DbEntities\EntityBase.cs" />
-    <Compile Include="DbEntities\BookEntity.cs" />
+    <Compile Include="DbEntities\Book.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Implementations\AuthorBookRepository.cs" />
@@ -65,18 +65,10 @@
     <Compile Include="Repository\Interfaces\IAuthorRepository.cs" />
     <Compile Include="Repository\Interfaces\IBookRepository.cs" />
     <Compile Include="Repository\Interfaces\IGenericRepository.cs" />
-    <Compile Include="UoW\Interfaces\IUnitOfWork.cs" />
-    <Compile Include="UoW\Realization\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Bookcase.Domain\Bookcase.Domain.csproj">
-      <Project>{5A021E9E-BC71-4880-BEE5-9C38306D974F}</Project>
-      <Name>Bookcase.Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

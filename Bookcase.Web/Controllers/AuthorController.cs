@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using AutoMapper;
+﻿using System.Web.Mvc;
+using Bookcase.BLL.Filters;
 using Bookcase.BLL.Services.Interfaces;
-using Bookcase.Domain.DomainModels;
 using Bookcase.ViewModel;
 
 namespace Bookcase.Web.Controllers
@@ -11,36 +8,31 @@ namespace Bookcase.Web.Controllers
     public class AuthorController : Controller
     {
         private readonly IAuthorService _authorService;
-        private readonly IBookService _bookService;
 
-        public AuthorController(IAuthorService authorService, IBookService bookService)
+        public AuthorController(IAuthorService authorService)
         {
             _authorService = authorService;
-            _bookService = bookService;
         }
 
+        [ExceptionFilter]
         public ActionResult Index()
         {
-            var unmapperAuthors = _authorService.GetAll();
-            var mappedAuthors = Mapper.Map<List<Author>, List<AuthorViewModel>>(unmapperAuthors);
+            var authors = _authorService.GetAll();
 
-            return View(mappedAuthors);
+            return View(authors);
         }
 
         [HttpGet]
+        [ExceptionFilter]
         public ActionResult Details(int id)
         {
-            var unmappedAuthor = _authorService.Get(id);
+            var author = _authorService.Get(id);
 
-            var mappedAuthor = Mapper.Map<Author, AuthorViewModel>(unmappedAuthor);
-            var mappedAuthorBooks = mappedAuthor.Books.Select(b => b.BookId);
-
-            SetViewDataWithBooks(mappedAuthorBooks);
-
-            return PartialView(mappedAuthor);
+            return PartialView(author);
         }
 
         [HttpGet]
+        [ExceptionFilter]
         public ActionResult Create()
         {
             return PartialView("Create");
@@ -48,80 +40,43 @@ namespace Bookcase.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ExceptionFilter]
         public ActionResult Create(AuthorViewModel author)
         {
-            var mapCreatedAuthor = Mapper.Map<AuthorViewModel, Author>(author);
-
-            _authorService.Create(mapCreatedAuthor);
+            _authorService.Create(author);
 
             return RedirectToAction("Index");
         }
 
         [HttpGet]
+        [ExceptionFilter]
         public ActionResult Edit(int id)
         {
-            var unmappedAuthor = _authorService.Get(id);
-            var mappedAuthor = Mapper.Map<Author, AuthorViewModel>(unmappedAuthor);
-            return PartialView(mappedAuthor);
+            var editedAuthor = _authorService.Get(id);
+
+            return PartialView(editedAuthor);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ExceptionFilter]
         public ActionResult Edit(AuthorViewModel author)
         {
-            var mapEditedAuthor = Mapper.Map<AuthorViewModel, Author>(author);
-
-            _authorService.Update(mapEditedAuthor);
+            _authorService.Update(author);
 
             return RedirectToAction("Index");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ExceptionFilter]
         public ActionResult Delete(int id)
         {
-            var unmappedAuthor = _authorService.Get(id);
-            var mappedAuthor = Mapper.Map<Author, AuthorViewModel>(unmappedAuthor);
+            var deletedAuthor = _authorService.Get(id);
 
-            _authorService.Delete(mappedAuthor.Id);
-
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddBookToAuthor(int bookId, int authorId)
-        {
-            _authorService.AddBookToAuthor(bookId, authorId);
+            _authorService.Delete(deletedAuthor.Id);
 
             return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteBookFromAuthor(int bookId, int authorId)
-        {
-            _authorService.DeleteBookFromAuthor(bookId, authorId);
-
-            return RedirectToAction("Index");
-        }
-
-        private void SetViewDataWithBooks(IEnumerable<int> excludedBooksId)
-        {
-            var excludedBooksList = excludedBooksId.ToList();
-            var unmappedBooks = _bookService.GetAll(b => excludedBooksList.All(eb => eb != b.Id));
-
-            var books = new SelectList(unmappedBooks, "Id", "Title");
-
-            ViewData["books"] = books;
-        }
-
-        public JsonResult GetViewDataWithBooks()
-        {
-            var unmappedBooks = _bookService.GetAll();
-
-            var mappedBooks = Mapper.Map<List<Book>, List<BookViewModel>>(unmappedBooks);
-            return Json(mappedBooks, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -1,26 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Bookcase.Domain.DomainModels;
+using Bookcase.ViewModel;
 
 namespace Bookcase.BLL.Services.Interfaces
 {
     public interface IBookService
     {
-        Book Get(int id);
-        List<Book> GetAll();
-        List<Book> GetAll(Expression<Func<Book, bool>> predicate);
+        BookViewModel Get(int id);
+        List<BookViewModel> GetAll();
+        List<BookViewModel> GetAll(Expression<Func<BookViewModel, bool>> predicate);
 
-        Book First(Expression<Func<Book, bool>> predicate);
+        BookViewModel First(Expression<Func<BookViewModel, bool>> predicate);
 
         bool Exists(int id);
-        bool Exists(Expression<Func<Book, bool>> predicate);
+        bool Exists(Expression<Func<BookViewModel, bool>> predicate);
 
         int Count();
-        int Count(Expression<Func<Book, bool>> predicate);
+        int Count(Expression<Func<BookViewModel, bool>> predicate);
 
-        Book Create(Book item);
-        Book Update(Book item);
+        BookViewModel Create(BookViewModel item);
+        BookViewModel Update(BookViewModel item);
         void Delete(int id);
+
+        void AddAuthorToBook(int bookId, int authorId);
+        void DeleteAuthorFromBook(int bookId, int authorId);
+
+        List<AuthorViewModel> GetAuthorsByBook(int bookId);
     }
 }

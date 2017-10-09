@@ -1,6 +1,6 @@
 ﻿using Bookcase.DAL.DbContext;
-using Bookcase.DAL.UoW.Interfaces;
-using Bookcase.DAL.UoW.Realization;
+using Bookcase.DAL.Repository.Implementations;
+using Bookcase.DAL.Repository.Interfaces;
 using Ninject.Modules;
 
 namespace Bookcase.DI.Modules
@@ -10,7 +10,9 @@ namespace Bookcase.DI.Modules
         public override void Load()
         {
             Bind<BookcaseContext>().ToSelf();
-            Bind<IUnitOfWork>().To<UnitOfWork>();
+            Bind<IBookRepository>().To<BookRepository>();
+            Bind<IAuthorRepository>().To<AuthorRepository>();
+            Bind<IAuthorBookRepository>().To<AuthorBookRepository>();
         }
     }
 }

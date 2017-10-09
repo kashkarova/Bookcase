@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookcase.Web", "Bookcase.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookcase.DI", "Bookcase.DI\Bookcase.DI.csproj", "{2001D604-123E-45F4-8B3F-DF983EF4D62D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookcase.Domain", "Bookcase.Domain\Bookcase.Domain.csproj", "{5A021E9E-BC71-4880-BEE5-9C38306D974F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,10 +39,6 @@ Global
 		{2001D604-123E-45F4-8B3F-DF983EF4D62D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2001D604-123E-45F4-8B3F-DF983EF4D62D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2001D604-123E-45F4-8B3F-DF983EF4D62D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5A021E9E-BC71-4880-BEE5-9C38306D974F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A021E9E-BC71-4880-BEE5-9C38306D974F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A021E9E-BC71-4880-BEE5-9C38306D974F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A021E9E-BC71-4880-BEE5-9C38306D974F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
