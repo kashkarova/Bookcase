@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using Bookcase.BLL.Filters;
 using Bookcase.BLL.Services.Interfaces;
 using Bookcase.ViewModel;
 
@@ -14,7 +13,6 @@ namespace Bookcase.Web.Controllers
             _authorService = authorService;
         }
 
-        [ExceptionFilter]
         public ActionResult Index()
         {
             var authors = _authorService.GetAll();
@@ -23,7 +21,6 @@ namespace Bookcase.Web.Controllers
         }
 
         [HttpGet]
-        [ExceptionFilter]
         public ActionResult Details(int id)
         {
             var author = _authorService.Get(id);
@@ -32,7 +29,6 @@ namespace Bookcase.Web.Controllers
         }
 
         [HttpGet]
-        [ExceptionFilter]
         public ActionResult Create()
         {
             return PartialView("Create");
@@ -40,7 +36,6 @@ namespace Bookcase.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ExceptionFilter]
         public ActionResult Create(AuthorViewModel author)
         {
             _authorService.Create(author);
@@ -49,7 +44,6 @@ namespace Bookcase.Web.Controllers
         }
 
         [HttpGet]
-        [ExceptionFilter]
         public ActionResult Edit(int id)
         {
             var editedAuthor = _authorService.Get(id);
@@ -59,7 +53,6 @@ namespace Bookcase.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ExceptionFilter]
         public ActionResult Edit(AuthorViewModel author)
         {
             _authorService.Update(author);
@@ -69,7 +62,6 @@ namespace Bookcase.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ExceptionFilter]
         public ActionResult Delete(int id)
         {
             var deletedAuthor = _authorService.Get(id);

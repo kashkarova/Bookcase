@@ -8,39 +8,39 @@
         <h4 class="modal-title">Create book</h4>
     </div>
     <div class="modal-body form-horizontal">
-        <hr/>
-        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.Title, "", new {@class = "text-danger"})
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.PublishingHouse, new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.PublishingHouse, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PublishingHouse, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.PublishingHouse, "", new {@class = "text-danger"})
+                @Html.EditorFor(model => model.PublishingHouse, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PublishingHouse, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Year, new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.Year, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Year, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.Year, "", new {@class = "text-danger"})
+                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">          
-            <label class = "control-label col-md-2">Author</label>
+        <div class="form-group">
+            <label class="control-label col-md-2">Author</label>
             <div class="col-md-10">
                 <input id="autocomplete" name="authorId" class="form-control" />
-            </div>           
+            </div>
         </div>
     </div>
     <div class="modal-footer">
-        <input type="submit" value="Create" class="btn btn-success"/>
+        <input type="submit" value="Create" class="btn btn-success" />
     </div>
 }
 

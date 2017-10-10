@@ -87,18 +87,8 @@ namespace Bookcase.DAL.Migrations
                     Year = DateTime.Parse("10.08.1886"),
                     PublishingHouse = "Школьная литература"
                 },
-                new Book
-                {
-                    Title = "Анна Каренина",
-                    Year = DateTime.Now,
-                    PublishingHouse = "Школьная литература"
-                },
-                new Book
-                {
-                    Title = "Евгений Онегин",
-                    Year = DateTime.Now,
-                    PublishingHouse = "Школьная литература"
-                }
+                new Book {Title = "Анна Каренина", Year = DateTime.Now, PublishingHouse = "Школьная литература"},
+                new Book {Title = "Евгений Онегин", Year = DateTime.Now, PublishingHouse = "Школьная литература"}
             );
 
             context.SaveChanges();

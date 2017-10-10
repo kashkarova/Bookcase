@@ -23,12 +23,12 @@
             <th>Year of birth</th>
             <th>Country</th>
         </tr>
-        @foreach (var author in ViewBag.authors)
+        @foreach (var author in Model.Authors)
         {
             <tr>
-                <td>@author.Name</td>
-                <td>@author.DateOfBirth.Year</td>
-                <td>@author.Country</td>
+                <td>@author.Author.Name</td>
+                <td>@author.Author.DateOfBirth.Year</td>
+                <td>@author.Author.Country</td>
             </tr>
         }
     </table>

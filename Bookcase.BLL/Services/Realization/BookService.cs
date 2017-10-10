@@ -8,6 +8,7 @@ using Bookcase.DAL.DbEntities;
 using Bookcase.DAL.Repository.Interfaces;
 using Bookcase.ViewModel;
 
+
 namespace Bookcase.BLL.Services.Realization
 {
     public class BookService : IBookService
@@ -125,7 +126,7 @@ namespace Bookcase.BLL.Services.Realization
 
             var authorBookList = _authorBookRepository.GetAll(b => b.BookId == book.Id);
 
-            if (authorBookList.Any(b=>b.AuthorId==author.Id))
+            if (authorBookList.Any(b => b.AuthorId == author.Id))
                 throw new ArgumentException("Invalid author id. Book by that id already contains that author.");
 
             var authorBook = new AuthorBook
@@ -153,20 +154,6 @@ namespace Bookcase.BLL.Services.Realization
 
             _authorBookRepository.Delete(authorBook.Id);
             _authorBookRepository.Save();
-        }
-
-        public List<AuthorViewModel> GetAuthorsByBook(int bookId)
-        {
-            var book = _bookRepository.Get(bookId);
-
-            var rawAuthors = _authorBookRepository.GetAll(a => a.BookId == book.Id).ToList();
-
-           var unmappedAuthors= rawAuthors.Select(item => _authorRepository.Get(item.AuthorId)).ToList();
-
-            var mappedAuthors = Mapper.Map<List<Author>, List<AuthorViewModel>>(unmappedAuthors);
-
-            return mappedAuthors;
-
         }
     }
 }

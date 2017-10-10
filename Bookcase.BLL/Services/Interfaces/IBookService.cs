@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Bookcase.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Bookcase.ViewModel;
 
 namespace Bookcase.BLL.Services.Interfaces
 {
@@ -25,7 +25,5 @@ namespace Bookcase.BLL.Services.Interfaces
 
         void AddAuthorToBook(int bookId, int authorId);
         void DeleteAuthorFromBook(int bookId, int authorId);
-
-        List<AuthorViewModel> GetAuthorsByBook(int bookId);
     }
 }

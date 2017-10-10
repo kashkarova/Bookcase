@@ -476,6 +476,10 @@
       <Project>{88A77260-3887-4C8B-AD8C-438BDEDA966D}</Project>
       <Name>Bookcase.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bookcase.DAL\Bookcase.DAL.csproj">
+      <Project>{AB5EABDF-29DB-485D-BACC-B2FA8C87EE30}</Project>
+      <Name>Bookcase.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bookcase.DI\Bookcase.DI.csproj">
       <Project>{2001D604-123E-45F4-8B3F-DF983EF4D62D}</Project>
       <Name>Bookcase.DI</Name>

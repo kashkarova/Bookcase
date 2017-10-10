@@ -51,10 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbContext\BookcaseContext.cs" />
-    <Compile Include="DbEntities\AuthorBook.cs" />
     <Compile Include="DbEntities\Author.cs" />
-    <Compile Include="DbEntities\EntityBase.cs" />
+    <Compile Include="DbEntities\AuthorBook.cs" />
     <Compile Include="DbEntities\Book.cs" />
+    <Compile Include="DbEntities\EntityBase.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Implementations\AuthorBookRepository.cs" />

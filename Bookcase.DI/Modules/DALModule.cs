@@ -10,9 +10,10 @@ namespace Bookcase.DI.Modules
         public override void Load()
         {
             Bind<BookcaseContext>().ToSelf();
-            Bind<IBookRepository>().To<BookRepository>();
+
             Bind<IAuthorRepository>().To<AuthorRepository>();
             Bind<IAuthorBookRepository>().To<AuthorBookRepository>();
+            Bind<IBookRepository>().To<BookRepository>();
         }
     }
 }

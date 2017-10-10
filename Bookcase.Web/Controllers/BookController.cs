@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
-using Bookcase.BLL.Filters;
 using Bookcase.BLL.Services.Interfaces;
 using Bookcase.ViewModel;
 
@@ -18,7 +16,6 @@ namespace Bookcase.Web.Controllers
             _authorService = authorService;
         }
 
-        [ExceptionFilter]
         public ActionResult Index()
         {
             var books = _bookService.GetAll();
@@ -27,24 +24,16 @@ namespace Bookcase.Web.Controllers
         }
 
         [HttpGet]
-        [ExceptionFilter]
         public ActionResult Details(int id)
         {
             var book = _bookService.Get(id);
 
-            var authorsByBook= _bookService.GetAuthorsByBook(id).ToList();
-
-            var exceptAuthors = _authorService.GetAll().Except(authorsByBook).ToList();
-
-            GetAuthorsWithoutBook(exceptAuthors);
-
-            ViewBag.authors = authorsByBook;
+            var authors = book.Authors.ToList();
 
             return PartialView(book);
         }
 
         [HttpGet]
-        [ExceptionFilter]
         public ActionResult Create()
         {
             return PartialView();
@@ -52,7 +41,6 @@ namespace Bookcase.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ExceptionFilter]
         public ActionResult Create(BookViewModel book, int? authorId)
         {
             var createdBook = _bookService.Create(book);
@@ -68,7 +56,6 @@ namespace Bookcase.Web.Controllers
 
 
         [HttpGet]
-        [ExceptionFilter]
         public ActionResult Edit(int id)
         {
             var editBook = _bookService.Get(id);
@@ -78,7 +65,6 @@ namespace Bookcase.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ExceptionFilter]
         public ActionResult Edit(BookViewModel book)
         {
             _bookService.Update(book);
@@ -88,7 +74,6 @@ namespace Bookcase.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ExceptionFilter]
         public ActionResult Delete(int id)
         {
             var deletedBook = _bookService.Get(id);
@@ -98,7 +83,6 @@ namespace Bookcase.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        [ExceptionFilter]
         public JsonResult GetAllAuthors()
         {
             var authors = _authorService.GetAll();
@@ -106,15 +90,8 @@ namespace Bookcase.Web.Controllers
             return Json(authors, JsonRequestBehavior.AllowGet);
         }
 
-        [ExceptionFilter]
-        public JsonResult GetAuthorsWithoutBook(List<AuthorViewModel> exceptAuthors)
-        {
-            return Json(exceptAuthors, JsonRequestBehavior.AllowGet);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ExceptionFilter]
         public ActionResult AddAuthorToBook(int bookId, int authorId)
         {
             _bookService.AddAuthorToBook(bookId, authorId);
@@ -124,7 +101,6 @@ namespace Bookcase.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ExceptionFilter]
         public ActionResult DeleteAuthorFromBook(int bookId, int authorId)
         {
             _bookService.DeleteAuthorFromBook(bookId, authorId);

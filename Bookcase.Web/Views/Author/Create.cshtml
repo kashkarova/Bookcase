@@ -11,38 +11,38 @@
     </div>
 
     <div class="modal-body form-horizontal">
-        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.DateOfBirth, new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.DateOfBirth, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateOfBirth, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new {@class = "text-danger"})
+                @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Country, new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.Country, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Country, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.Country, "", new {@class = "text-danger"})
+                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Photo, new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.Photo, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Photo, new {type = "file"})
-                @Html.ValidationMessageFor(model => model.Photo, "", new {@class = "text-danger"})
+                @Html.TextBoxFor(model => model.Photo, new { type = "file" })
+                @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <input type="submit" value="Create" class="btn btn-success"/>
+        <input type="submit" value="Create" class="btn btn-success" />
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
     </div>
 }
