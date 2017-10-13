@@ -22,31 +22,31 @@
     <h4>Author(s):</h4>
     <table class="table table-hover table-bordered">
         <thead>
-            <tr>
-                <td>#</td>
-                <td>@Html.LabelFor(x => x.Authors.FirstOrDefault().Author.Name)</td>
-            </tr>
+        <tr>
+            <td>#</td>
+            <td>@Html.LabelFor(x => x.Authors.FirstOrDefault().Author.Name)</td>
+        </tr>
         </thead>
         <tbody>
-            @for (var authorIndex = 0; authorIndex < Model.Authors.Count(); authorIndex++)
-            {
-                <tr>
-                    <td>@(authorIndex + 1)</td>
-                    <td>@Html.DisplayFor(x => x.Authors[authorIndex].Author.Name)</td>
-                    <td>
-                        @using (Html.BeginForm("DeleteAuthorFromBook", "Book",
-            new { bookId = Model.Id, authorId = Model.Authors[authorIndex].AuthorId }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <input type="submit" value="Delete" class="btn btn-warning" />
-                        }
-                    </td>
-                </tr>
-            }
+        @for (var authorIndex = 0; authorIndex < Model.Authors.Count(); authorIndex++)
+        {
+            <tr>
+                <td>@(authorIndex + 1)</td>
+                <td>@Html.DisplayFor(x => x.Authors[authorIndex].Author.Name)</td>
+                <td>
+                    @using (Html.BeginForm("DeleteAuthorFromBook", "Book",
+                        new {bookId = Model.Id, authorId = Model.Authors[authorIndex].AuthorId}))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="submit" value="Delete" class="btn btn-warning"/>
+                    }
+                </td>
+            </tr>
+        }
         </tbody>
     </table>
 
-    <hr />
+    <hr/>
 
     @using (Html.BeginForm("AddAuthorToBook", "Book"))
     {
@@ -68,7 +68,7 @@
 
 
         <script>
-            $(document).ready(function () {
+            $(document).ready(function() {
                 $("#autocomplete").kendoAutoComplete({
                     dataTextField: "Id",
                     template: "#= Name #",
@@ -91,4 +91,3 @@
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
 </div>
-

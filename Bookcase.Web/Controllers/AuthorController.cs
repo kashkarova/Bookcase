@@ -1,9 +1,11 @@
 ﻿using System.Web.Mvc;
+using Bookcase.BLL.Filters;
 using Bookcase.BLL.Services.Interfaces;
 using Bookcase.ViewModel;
 
 namespace Bookcase.Web.Controllers
 {
+    [ExceptionFilter]
     public class AuthorController : Controller
     {
         private readonly IAuthorService _authorService;

@@ -1,7 +1,7 @@
-﻿using Bookcase.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Bookcase.ViewModel;
 
 namespace Bookcase.BLL.Services.Interfaces
 {

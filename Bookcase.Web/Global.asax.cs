@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Bookcase.Web.Automapper;
-using Bookcase.Web.Controllers;
 
 namespace Bookcase.Web
 {
@@ -17,6 +16,6 @@ namespace Bookcase.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-        } 
+        }
     }
 }

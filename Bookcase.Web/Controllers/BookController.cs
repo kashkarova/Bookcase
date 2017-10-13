@@ -1,9 +1,11 @@
 ﻿using System.Web.Mvc;
+using Bookcase.BLL.Filters;
 using Bookcase.BLL.Services.Interfaces;
 using Bookcase.ViewModel;
 
 namespace Bookcase.Web.Controllers
 {
+    [ExceptionFilter]
     public class BookController : Controller
     {
         private readonly IAuthorService _authorService;
@@ -85,9 +87,7 @@ namespace Bookcase.Web.Controllers
             var authors = _authorService.GetAll();
 
             foreach (var author in authors)
-            {
                 author.Books = null;
-            }
 
             return Json(authors, JsonRequestBehavior.AllowGet);
         }

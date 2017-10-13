@@ -8,7 +8,6 @@ using Bookcase.DAL.DbEntities;
 using Bookcase.DAL.Repository.Interfaces;
 using Bookcase.ViewModel;
 
-
 namespace Bookcase.BLL.Services.Realization
 {
     public class BookService : IBookService
@@ -127,7 +126,7 @@ namespace Bookcase.BLL.Services.Realization
             var authorBookList = _authorBookRepository.GetAll(b => b.BookId == book.Id);
 
             if (authorBookList.Any(b => b.AuthorId == author.Id))
-                return;
+                throw new Exception("Error of adding the author! Such author is already exists!");
 
             var authorBook = new AuthorBook
             {
