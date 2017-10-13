@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Bookcase.BLL.Services.Interfaces;
 using Bookcase.ViewModel;
 
@@ -27,8 +26,6 @@ namespace Bookcase.Web.Controllers
         public ActionResult Details(int id)
         {
             var book = _bookService.Get(id);
-
-            var authors = book.Authors.ToList();
 
             return PartialView(book);
         }
@@ -86,6 +83,11 @@ namespace Bookcase.Web.Controllers
         public JsonResult GetAllAuthors()
         {
             var authors = _authorService.GetAll();
+
+            foreach (var author in authors)
+            {
+                author.Books = null;
+            }
 
             return Json(authors, JsonRequestBehavior.AllowGet);
         }

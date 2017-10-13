@@ -23,6 +23,6 @@ namespace Bookcase.ViewModel
         [DisplayFormat(DataFormatString = "{0:yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Year { get; set; }
 
-        public List<AuthorBookViewModel> Authors { get; set; }
+        public virtual List<AuthorBookViewModel> Authors { get; set; }
     }
 }

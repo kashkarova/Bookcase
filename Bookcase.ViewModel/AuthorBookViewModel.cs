@@ -7,11 +7,11 @@ namespace Bookcase.ViewModel
         [Required]
         public int AuthorId { get; set; }
 
-        public AuthorViewModel Author { get; set; }
+        public virtual AuthorViewModel Author { get; set; }
 
         [Required]
         public int BookId { get; set; }
 
-        public BookViewModel Book { get; set; }
+        public virtual BookViewModel Book { get; set; }
     }
 }

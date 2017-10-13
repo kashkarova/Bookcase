@@ -26,6 +26,6 @@ namespace Bookcase.ViewModel
         [DisplayName("Photo")]
         public string Photo { get; set; }
 
-        public List<AuthorBookViewModel> Books { get; set; }
+        public virtual List<AuthorBookViewModel> Books { get; set; }
     }
 }

@@ -10,12 +10,12 @@ namespace Bookcase.DAL.DbContext
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<BookcaseContext, Configuration>());
 
-            Configuration.ProxyCreationEnabled = false;
-            Configuration.AutoDetectChangesEnabled = false;
+            //Configuration.ProxyCreationEnabled = false;
+            //Configuration.AutoDetectChangesEnabled = false;
         }
 
-        public virtual DbSet<Book> Book { get; set; }
-        public virtual DbSet<Author> Author { get; set; }
-        public virtual DbSet<AuthorBook> AuthorBook { get; set; }
+        public DbSet<Book> Book { get; set; }
+        public DbSet<Author> Author { get; set; }
+        public DbSet<AuthorBook> AuthorBook { get; set; }
     }
 }

@@ -127,7 +127,7 @@ namespace Bookcase.BLL.Services.Realization
             var authorBookList = _authorBookRepository.GetAll(b => b.BookId == book.Id);
 
             if (authorBookList.Any(b => b.AuthorId == author.Id))
-                throw new ArgumentException("Invalid author id. Book by that id already contains that author.");
+                return;
 
             var authorBook = new AuthorBook
             {
