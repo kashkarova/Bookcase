@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bookcase.DAL.DbEntities
 {
-    public class AuthorBook : EntityBase
+    public class AuthorInBook : EntityBase
     {
         [Required]
         [ForeignKey("Author")]

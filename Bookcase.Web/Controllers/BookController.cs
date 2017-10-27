@@ -1,11 +1,9 @@
 ﻿using System.Web.Mvc;
-using Bookcase.BLL.Filters;
 using Bookcase.BLL.Services.Interfaces;
 using Bookcase.ViewModel;
 
 namespace Bookcase.Web.Controllers
 {
-    [ExceptionFilter]
     public class BookController : Controller
     {
         private readonly IAuthorService _authorService;
@@ -94,11 +92,19 @@ namespace Bookcase.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddAuthorToBook(int bookId, int authorId)
+        public ActionResult AddAuthorToBook(int bookId, string authorName)
         {
-            _bookService.AddAuthorToBook(bookId, authorId);
+            var authorId = _authorService.First(a => a.Name == authorName).Id;
 
+            if (_bookService.Get(bookId).Authors.Exists(a => a.AuthorId == authorId))
+            {
+                TempData["ErrorMessage"] = "Such author is exists!";
+                return View("Details", _bookService.Get(bookId));
+            }
+
+            _bookService.AddAuthorToBook(bookId, authorId);
             return RedirectToAction("Index");
+
         }
 
         [HttpPost]

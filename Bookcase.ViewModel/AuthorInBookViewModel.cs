@@ -1,8 +1,9 @@
-﻿using Microsoft.Build.Framework;
+﻿using System.Web.Mvc;
+using Microsoft.Build.Framework;
 
 namespace Bookcase.ViewModel
 {
-    public class AuthorBookViewModel
+    public class AuthorInBookViewModel
     {
         [Required]
         public int AuthorId { get; set; }

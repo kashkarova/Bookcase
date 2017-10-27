@@ -128,7 +128,7 @@ namespace Bookcase.BLL.Services.Realization
             if (authorBookList.Any(b => b.AuthorId == author.Id))
                 throw new Exception("Error of adding the author! Such author is already exists!");
 
-            var authorBook = new AuthorBook
+            var authorBook = new AuthorInBook
             {
                 AuthorId = author.Id,
                 BookId = book.Id

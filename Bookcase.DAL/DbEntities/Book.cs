@@ -19,6 +19,6 @@ namespace Bookcase.DAL.DbEntities
         [Required]
         public DateTime Year { get; set; }
 
-        public virtual ICollection<AuthorBook> Authors { get; set; }
+        public virtual ICollection<AuthorInBook> Authors { get; set; }
     }
 }

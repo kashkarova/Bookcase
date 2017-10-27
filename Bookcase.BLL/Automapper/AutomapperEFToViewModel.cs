@@ -16,7 +16,7 @@ namespace Bookcase.BLL.Automapper
                 .MaxDepth(1)
                 .ReverseMap();
 
-            CreateMap<AuthorBook, AuthorBookViewModel>()
+            CreateMap<AuthorInBook, AuthorInBookViewModel>()
                 .MaxDepth(1)
                 .ReverseMap();
         }

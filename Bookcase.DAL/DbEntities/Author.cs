@@ -19,6 +19,6 @@ namespace Bookcase.DAL.DbEntities
 
         public string Photo { get; set; }
 
-        public virtual ICollection<AuthorBook> Books { get; set; }
+        public virtual ICollection<AuthorInBook> Books { get; set; }
     }
 }

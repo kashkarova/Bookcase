@@ -2,7 +2,7 @@
 
 namespace Bookcase.DAL.Repository.Interfaces
 {
-    public interface IAuthorBookRepository : IGenericRepository<AuthorBook>
+    public interface IAuthorBookRepository : IGenericRepository<AuthorInBook>
     {
     }
 }
