@@ -2,6 +2,7 @@
 using System.Data.Entity.Migrations;
 using Bookcase.DAL.DbContext;
 using Bookcase.DAL.DbEntities;
+using System.Globalization;
 
 namespace Bookcase.DAL.Migrations
 {
@@ -19,28 +20,28 @@ namespace Bookcase.DAL.Migrations
                 new Author
                 {
                     Name = "А.С. Пушкин",
-                    DateOfBirth = DateTime.Parse("29.01.1837"),
+                    DateOfBirth = DateTime.Parse("01.29.1837"),
                     Country = "Россия",
                     Photo = "pushkin.jpg"
                 },
                 new Author
                 {
                     Name = "Л.Н. Толстой",
-                    DateOfBirth = DateTime.Parse("28.08.1828"),
+                    DateOfBirth = DateTime.Parse("08.28.1828"),
                     Country = "Россия",
                     Photo = "tolstoy_lev.jpg"
                 },
                 new Author
                 {
                     Name = "М.Ю. Лермонтов",
-                    DateOfBirth = DateTime.Parse("15.07.1841"),
+                    DateOfBirth = DateTime.Parse("07.15.1841"),
                     Country = "Россия",
                     Photo = "lermontov.jpg"
                 },
                 new Author
                 {
                     Name = "С.А. Есенин",
-                    DateOfBirth = DateTime.Parse("21.09.1895"),
+                    DateOfBirth = DateTime.Parse("09.21.1895"),
                     Country = "Россия",
                     Photo = "yesenin.jpg"
                 },
@@ -66,25 +67,25 @@ namespace Bookcase.DAL.Migrations
                 new Book
                 {
                     Title = "Война и мир. Том 1.",
-                    Year = DateTime.Parse("10.08.1886"),
+                    Year = DateTime.Parse("07.07.1893"),
                     PublishingHouse = "Школьная литература"
                 },
                 new Book
                 {
                     Title = "Война и мир. Том 2.",
-                    Year = DateTime.Parse("10.08.1886"),
+                    Year = DateTime.Parse("07.07.1893"),
                     PublishingHouse = "Школьная литература"
                 },
                 new Book
                 {
                     Title = "Война и мир. Том 3.",
-                    Year = DateTime.Parse("10.08.1886"),
+                    Year = DateTime.Parse("07.07.1893"),
                     PublishingHouse = "Школьная литература"
                 },
                 new Book
                 {
                     Title = "Война и мир. Том 4.",
-                    Year = DateTime.Parse("10.08.1886"),
+                    Year = DateTime.Parse("07.07.1893"),
                     PublishingHouse = "Школьная литература"
                 },
                 new Book {Title = "Анна Каренина", Year = DateTime.Now, PublishingHouse = "Школьная литература"},

@@ -96,12 +96,6 @@ namespace Bookcase.Web.Controllers
         {
             var authorId = _authorService.First(a => a.Name == authorName).Id;
 
-            if (_bookService.Get(bookId).Authors.Exists(a => a.AuthorId == authorId))
-            {
-                TempData["ErrorMessage"] = "Such author is exists!";
-                return View("Details", _bookService.Get(bookId));
-            }
-
             _bookService.AddAuthorToBook(bookId, authorId);
             return RedirectToAction("Index");
 
