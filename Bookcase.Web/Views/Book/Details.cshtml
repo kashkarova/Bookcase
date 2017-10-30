@@ -48,7 +48,7 @@
 
     <hr />
 
-    @using (Ajax.BeginForm("AddAuthorToBook", "Book", new AjaxOptions { HttpMethod="POST", OnSuccess="OnSuccess", OnFailure="OnFailure"}))
+    @using (Ajax.BeginForm("AddAuthorToBook", "Book", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
     {
         @Html.AntiForgeryToken()
         @Html.Hidden("bookId", Model.Id)
@@ -56,14 +56,12 @@
             <tr>
                 <td>
                     <input id="autocomplete" name="authorName" />
+                    @Html.ValidationMessageFor(model => Model.Authors)
                     @*@Html.DropDownList("bookId", ViewData["books"] as SelectList, new {@class = "form-control"})*@
                 </td>
 
                 <td>
                     <input type="submit" value="Add" class="btn btn-success" />
-                </td>
-                <td style="color: red; font-weight: bold;">
-                    @TempData["ErrorMessage"]
                 </td>
 
             </tr>
@@ -83,7 +81,7 @@
                             read: "../Book/GetAllAuthors"
                         }
                     }
-                })   
+                })
             });
 
             function OnSuccess(data) {
@@ -97,7 +95,13 @@
     }
 </div>
 
-
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div id="myDialog" class="modal-content">
+        </div>
+    </div>
 </div>
